@@ -1,0 +1,20 @@
+# ==-----------------------------------------------------------== #
+# SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+#
+# SPDX-License-Identifier: Apache-2.0
+# ==-----------------------------------------------------------== #
+
+version: 2
+updates:
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "develop"
+    labels:
+      - "A-dependencies"
+      - "C-enhancement"
+      - "S-needs-triage"
+    groups:
+      pkl-updates:
+        update-types: [minor, patch]

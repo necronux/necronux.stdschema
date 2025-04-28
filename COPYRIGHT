@@ -1,0 +1,41 @@
+Short version for non-lawyers:
+
+The necronux.stdschema project is primarily distributed under the terms of `Apache-2.0` license.
+However, certain portions of the repository are covered by different licenses.
+
+It is Copyright © 2025 Nayan Patil <nayantsg@proton.me>
+
+Here's a brief overview of the licensing for different portions of the project:
+- All pkl modules inside `dev/`, `stable/` and `deprecated/` are licensed under `Apache-2.0`.
+- Certain configuration and data files are licensed under `Apache-2.0`.
+- Certain documentation and markdown files are licensed under the `CC-BY-SA-4.0` license.
+
+For detailed licensing information, see:
+- `LICENSES/Apache-2.0.txt`
+- `LICENSES/CC-BY-SA-4.0.txt`
+- `THIRD-PARTY-NOTICES`
+- `REUSE.toml`
+- The individual files in the repository.
+
+Longer version:
+
+Contributors retain copyright to their respective contributions in the necronux.stdschema project.
+No copyright assignment is required to contribute to the necronux.stdschema project.
+
+Some files include explicit copyright notices and/or license notices.
+For full authorship information, see the version control history.
+
+Except as otherwise noted, necronux.stdschema is licensed under Apache-2.0 (<LICENSES/Apache-2.0.txt>
+or <http://www.apache.org/licenses/LICENSE-2.0>)
+
+For any legal inquiries or concerns, please contact:
+Nayan Patil <nayantsg@proton.me>
+
+We track licenses in two ways:
+
+- For in-tree source files, we use [REUSE](https://reuse.software) to track licensing details via `REUSE.toml` and individual file headers.
+  This information is used to generate SPDX bill of materials (SBOM) in the file `reuse.spdx`, which is shipped at each release.
+- For out-of-tree dependencies, we manually track licensing details in `THIRD-PARTY-NOTICES`.
+
+Both `reuse.spdx` and `THIRD-PARTY-NOTICES` are shipped with each release of necronux.stdschema
+Please refer to these files for detailed information as to the components of any given necronux.stdschema release.
