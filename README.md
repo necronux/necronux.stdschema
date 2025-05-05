@@ -47,7 +47,7 @@ Please see [CONTRIBUTING.md] for guidelines on how to contribute to the project.
 necronux.stdschema is primarily distributed under the terms of `Apache-2.0` license.
 However, certain portions of the repository are covered by different licenses.
 
-See [Apache-2.0.txt], [CC-BY-SA-4.0.txt], and [COPYRIGHT.txt] for full licensing details.
+See [Apache-2.0.txt], [CC-BY-SA-4.0.txt], and [COPYRIGHT] for full licensing details.
 
 [Apache-2.0.txt]: LICENSES/Apache-2.0.txt
 [CC-BY-SA-4.0.txt]: LICENSES/CC-BY-SA-4.0.txt
