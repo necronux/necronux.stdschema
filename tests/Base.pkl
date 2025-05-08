@@ -10,7 +10,7 @@ module necronux.stdschema.Base.tests
 amends "pkl:test"
 
 import "pkl:test"
-import "../Base.pkl"
+import "../schema/Base.pkl"
 
 examples {
   ["basic"] {
