@@ -1,0 +1,111 @@
+# ==-----------------------------------------------------------== #
+# SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+#
+# SPDX-License-Identifier: Apache-2.0
+# ==-----------------------------------------------------------== #
+
+# Do not modify!
+# This file was generated from a template using necronux.internal.pkl project.
+# Any changes should be made to the template, not this file.
+
+name: CI-Pkl
+'on':
+  pull_request:
+    paths:
+    - '*.pkl'
+    - '**/*.pkl'
+    - stdschema/**
+    - tools/**
+    - '*.kts'
+    - '**/*.kts'
+    - gradle/**
+    - gradlew
+    - gradlew.bat
+    - justfile
+  push:
+    paths:
+    - '*.pkl'
+    - '**/*.pkl'
+    - stdschema/**
+    - tools/**
+    - '*.kts'
+    - '**/*.kts'
+    - gradle/**
+    - gradlew
+    - gradlew.bat
+    - justfile
+  workflow_dispatch: {}
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  conclusion:
+    name: Conclusion
+    if: ${{ !cancelled() }}
+    needs:
+    - resolvecheck
+    - evalcheck
+    - test
+    permissions:
+      contents: none
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Conclusion
+      shell: bash
+      run: |-
+        jq -C <<< '${{ toJson(needs) }}'
+        jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+  resolvecheck:
+    name: Resolve Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Install just
+      uses: taiki-e/install-action@v2
+      with:
+        tool: just
+    - name: Check if necronux.stdschema pkl project can be resolved
+      shell: bash
+      run: just resolve-stdschema
+  evalcheck:
+    name: Eval Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Install just
+      uses: taiki-e/install-action@v2
+      with:
+        tool: just
+    - name: Check if necronux.stdschema pkl modules can be evaluated
+      shell: bash
+      run: just eval-stdschema
+    - name: Verify pkl modules evaluation reflects the latest changes
+      shell: bash
+      run: git diff --exit-code
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Install just
+      uses: taiki-e/install-action@v2
+      with:
+        tool: just
+    - name: Test necronux.stdschema pkl modules
+      shell: bash
+      run: just test-stdschema
