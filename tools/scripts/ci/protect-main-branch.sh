@@ -13,7 +13,6 @@ TARGET_BRANCH="main"
 ALLOWED_PREFIXES=(
     "feature/"
     "bugfix/"
-    "hotfix/"
     "bump/"
     "dependabot/"
 )

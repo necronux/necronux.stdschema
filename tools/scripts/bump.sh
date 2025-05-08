@@ -19,7 +19,7 @@ if [ -z "$NEW_VERSION" ]; then
 fi
 
 PKL_FILES=(
-    "tools/stdschema.pkl.ci/PklProject"
+    "PklProject"
 )
 
 for PKL_FILE in "${PKL_FILES[@]}"; do
