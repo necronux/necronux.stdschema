@@ -6,18 +6,23 @@
 
 amends "pkl:Project"
 
+local const projectState = "dev"
+local const projectVerDir = "v1"
+local const gitRepo = "github.com/necronux/necronux.stdschema"
+
 package {
   name = "necronux.stdschema"
-  baseUri = "package://pkg.pkl-lang.org/necronux.stdschema/\(name)"
+  baseUri = "package://pkg.pkl-lang.org/\(gitRepo)/\(name)"
   version = "1.0.0-dev"
-  packageZipUrl = "https://github.com/necronux/necronux.stdschema/releases/download/\(name)@\(version)/\(name)@\(version).zip"
+  packageZipUrl = "https://\(gitRepo)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
   description = "The Necronux standard schema pkl project."
   authors {
     "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
   }
-  sourceCode = "https://github.com/necronux/necronux.stdschema/tree/\(name)@\(version)/packages/\(name)"
-  sourceCodeUrlScheme = "https://github.com/necronux/necronux.stdschema/blob/\(name)@\(version)/packages/\(name)%{path}#L%{line}-%{endLine}"
-  issueTracker = "https://github.com/necronux/necronux.stdschema/issues"
+  sourceCode = "https://\(gitRepo)/tree/\(name)@\(version)/\(projectState)/\(projectVerDir)"
+  sourceCodeUrlScheme = "https://\(gitRepo)/blob/\(name)@\(version)/\(projectState)/\(projectVerDir)%{path}#L%{line}-%{endLine}"
+  license = "Apache-2.0"
+  issueTracker = "https://\(gitRepo)/issues"
   exclude {
     "examples/**"
     "tests/**"
