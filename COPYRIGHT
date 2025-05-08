@@ -6,7 +6,7 @@ However, certain portions of the repository are covered by different licenses.
 It is Copyright © 2025 Nayan Patil <nayantsg@proton.me>
 
 Here's a brief overview of the licensing for different portions of the project:
-- All pkl modules inside `dev/`, `stable/` and `deprecated/` are licensed under `Apache-2.0`.
+- All pkl modules inside `schema/` are licensed under `Apache-2.0`.
 - Certain configuration and data files are licensed under `Apache-2.0`.
 - Certain documentation and markdown files are licensed under the `CC-BY-SA-4.0` license.
 

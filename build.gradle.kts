@@ -5,20 +5,20 @@
 // ==-----------------------------------------------------------== //
 
 plugins {
-  id("org.pkl-lang") version "0.27.2"
+  id("org.pkl-lang") version "0.28.2"
 }
 
 pkl {
   evaluators {
-    register("evalStdSchemaV1") {
+    register("evalStdSchema") {
       projectDir.set(file("."))
-      sourceModules.set(fileTree(projectDir) { include("*.pkl") })
+      sourceModules.set(fileTree(projectDir) { include("schema/*.pkl") })
       outputFile.set(file("${layout.buildDirectory.get()}/%{moduleName}.%{outputFormat}"))
     }
   }
 
   tests {
-    register("testStdSchemaV1") {
+    register("testStdSchema") {
       projectDir.set(file("."))
       sourceModules.set(fileTree(projectDir) { include("tests/*.pkl") })
       overwrite.set(false)
@@ -27,13 +27,13 @@ pkl {
 
   project {
     resolvers {
-      register("resolveStdSchemaV1") {
+      register("resolveStdSchema") {
         projectDirectories.from(file("."))
       }
     }
 
     packagers {
-      register("makeStdSchemaV1Pkg") {
+      register("makeStdSchemaPkg") {
         projectDirectories.from(file("."))
       }
     }

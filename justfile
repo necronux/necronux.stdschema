@@ -29,17 +29,17 @@ resolve-stdschemapklci:
     ./gradlew resolveStdSchemaPklCi
 
 resolve-stdschema:
-    ./gradlew resolveStdSchemaV1
+    ./gradlew resolveStdSchema
 
 eval-stdschemapklci:
     ./gradlew evalStdSchemaPklCiModules
     ./gradlew evalStdSchemaPklCiWorkflows
 
 eval-stdschema:
-    ./gradlew evalStdSchemaV1
+    ./gradlew evalStdSchema
 
 test-stdschema:
-    ./gradlew testStdSchemaV1
+    ./gradlew testStdSchema
 
 make-stdschemapkg:
-    ./gradlew makeStdSchemaV1Pkg
+    ./gradlew makeStdSchemaPkg

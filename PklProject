@@ -6,7 +6,6 @@
 
 amends "pkl:Project"
 
-local const projectState = "dev"
 local const projectVerDir = "v1"
 local const gitRepo = "github.com/necronux/necronux.stdschema"
 
@@ -19,14 +18,21 @@ package {
   authors {
     "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
   }
-  sourceCode = "https://\(gitRepo)/tree/\(name)@\(version)/\(projectState)/\(projectVerDir)"
-  sourceCodeUrlScheme = "https://\(gitRepo)/blob/\(name)@\(version)/\(projectState)/\(projectVerDir)%{path}#L%{line}-%{endLine}"
+  sourceCode = "https://\(gitRepo)"
+  sourceCodeUrlScheme = "https://\(gitRepo)/blob/\(name)@\(version)%{path}#L%{line}-%{endLine}"
   license = "Apache-2.0"
   issueTracker = "https://\(gitRepo)/issues"
   exclude {
+    ".github/"
     "examples/**"
+    "gradle/**"
+    "gradlew"
+    "gradlew.bat"
     "tests/**"
+    "tools/**"
     "build.gradle.kts"
+    "settings.gradle.kts"
+    "justfile"
   }
 }
 

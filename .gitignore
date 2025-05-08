@@ -9,12 +9,7 @@
 /build/
 
 # Pkl
-/dev/**/build/
-/dev/**/.out/
-/stable/**/build/
-/stable/**/.out/
-/deprecated/**/build/
-/deprecated/**/.out/
+/.out/
 /tools/**/build/
 /tools/**/.out/
 
