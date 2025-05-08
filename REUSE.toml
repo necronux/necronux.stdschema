@@ -16,12 +16,8 @@ version = 1
 
 [[annotations]]
 path = [
-  "dev/**/PklProject.deps.json",
-  "dev/**/*.pcf",
-  "stable/**/PklProject.deps.json",
-  "stable/**/*.pcf",
-  "deprecated/**/PklProject.deps.json",
-  "deprecated/**/*.pcf",
+  "PklProject.deps.json",
+  "tests/*.pcf",
   "tools/stdschema.pkl.ci/PklProject.deps.json",
 ]
 precedence = "override"
