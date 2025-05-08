@@ -1,0 +1,24 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+module PolicyBranchProtection
+
+amends "@internal/schemas/GitHubAction.pkl"
+
+import "@internal/gha/JobsPolicyBranchProtection.pkl" as JobsPolBranchProt
+import "@internal/gha/UtilsCommon.pkl"
+
+headercomment = UtilsCommon.headerComment("2025", "Nayan Patil <nayantsg@proton.me>", "Apache-2.0")
+name = "Policy-Branch-Protection"
+permissions = (UtilsCommon.contentPermissions("read")) {}
+
+on {
+  pull_request {}
+}
+jobs {
+  ["protect-main-branch"] = (JobsPolBranchProt.protectBranch("main", false)) {}
+}

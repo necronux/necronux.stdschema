@@ -6,6 +6,7 @@
 
 rootProject.name = "necronux.stdschema"
 
+include("tools:stdschema.pkl.ci")
 include("dev:v1")
 
 pluginManagement {
