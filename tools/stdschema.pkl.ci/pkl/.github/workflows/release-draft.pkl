@@ -1,0 +1,62 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+module ReleaseDraft
+
+amends "@internal/schemas/GitHubAction.pkl"
+
+import "@internal/gha/JobsReleaseBuild.pkl"
+import "@internal/gha/UtilsCommon.pkl"
+import "@internal/gha/TriggersCommon.pkl"
+
+import "modules/release-build.pkl" as Build
+import "modules/release-draft-gh.pkl" as Github
+import "modules/release-validate.pkl" as Validate
+
+headercomment = UtilsCommon.headerComment("2025", "Nayan Patil <nayantsg@proton.me>", "Apache-2.0")
+name = "Release-Draft"
+permissions = (UtilsCommon.contentPermissions("read")) {}
+
+on {
+  workflow_dispatch {
+    inputs {
+      ["release_type"] = (TriggersCommon.wDispatchReleaseType(new Listing{
+        "pre-release"
+        "stable-release"
+      })) {}
+      ["release_tag"] = (TriggersCommon.wDispatchReleaseTag()) {}
+    }
+  }
+}
+jobs {
+  ["validate-release-tag"] = (Validate.releaseTag()) {}
+  ["validate-release-type"] = (Validate.releaseType()) {}
+  ["build-necronux-stdschema"] = (Build.necronuxStdSchema()) {
+    needs {
+      "validate-release-tag"
+      "validate-release-type"
+    }
+  }
+  ["generate-sbom"] = (JobsReleaseBuild.reuseSPDXSBOM("${{ inputs.release_tag }}", "${{ inputs.release_tag }}")) {
+    needs {
+      "validate-release-tag"
+      "validate-release-type"
+    }
+  }
+  ["create-pre-release-draft"] = (Github.createPreReleaseDraft()) {
+    needs {
+      "build-necronux-stdschema"
+      "generate-sbom"
+    }
+  }
+  ["create-stable-release-draft"] = (Github.createStableReleaseDraft()) {
+    needs {
+      "build-necronux-stdschema"
+      "generate-sbom"
+    }
+  }
+}
