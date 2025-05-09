@@ -21,4 +21,5 @@ on {
 }
 jobs {
   ["protect-main-branch"] = (JobsPolBranchProt.protectBranch("main", false)) {}
+  ["protect-release-branches"] = (JobsPolBranchProt.protectBranch("release", true)) {}
 }
