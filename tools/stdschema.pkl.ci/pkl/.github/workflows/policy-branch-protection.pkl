@@ -20,6 +20,7 @@ on {
   pull_request {}
 }
 jobs {
-  ["protect-main-branch"] = (JobsPolBranchProt.protectBranch("main", false)) {}
+  ["protect-develop-branch"] = (JobsPolBranchProt.protectBranch("develop", false)) {}
   ["protect-release-branches"] = (JobsPolBranchProt.protectBranch("release", true)) {}
+  ["protect-stable-branches"] = (JobsPolBranchProt.protectBranch("stable", true)) {}
 }
