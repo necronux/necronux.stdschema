@@ -12,7 +12,7 @@ bundle {
   name = "Test Bundle"
   description = "A test bundle."
   apps {
-    "ansible"
-    "terraform"
+    "app1"
+    "app2"
   }
 }
