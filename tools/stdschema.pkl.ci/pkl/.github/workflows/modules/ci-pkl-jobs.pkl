@@ -24,6 +24,11 @@ const function resolveCheck() = new gha.Job {
       run = "just resolve-stdschema"
       shell = "bash"
     }
+    new {
+      name = "Check if stdschema.pkl.ci pkl project can be resolved"
+      run = "just resolve-stdschemapklci"
+      shell = "bash"
+    }
   }
 } |> UtilsCommon.standardJobConfig(null, null)
 
@@ -35,6 +40,11 @@ const function evalCheck() = new gha.Job {
     new {
       name = "Check if necronux.stdschema pkl modules can be evaluated"
       run = "just eval-stdschema"
+      shell = "bash"
+    }
+    new {
+      name = "Check if stdschema.pkl.ci pkl modules can be evaluated"
+      run = "just eval-stdschemapklci"
       shell = "bash"
     }
     new {
