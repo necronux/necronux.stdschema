@@ -5,7 +5,7 @@
 // ==-----------------------------------------------------------== //
 
 @ModuleInfo { minPklVersion = "0.27.0" }
-module ReleaseValidate
+module ReleaseDraftValidate
 
 import "@internal/schemas/GitHubAction.pkl" as gha
 

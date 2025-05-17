@@ -15,6 +15,7 @@ name: Release-Draft
       release_type:
         description: Choose type of release
         required: true
+        default: pre-release
         type: choice
         options:
         - pre-release

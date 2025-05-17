@@ -30,7 +30,7 @@ on {
   workflow_dispatch {}
 }
 jobs {
-  ["conclusion"] = (JobsConcl.conclusionAll()) {
+  ["conclusion"] = (JobsConcl.conclusion()) {
     needs {
       "resolvecheck"
       "evalcheck"

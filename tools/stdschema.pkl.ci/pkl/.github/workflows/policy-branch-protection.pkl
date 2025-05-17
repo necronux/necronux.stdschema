@@ -20,7 +20,15 @@ on {
   pull_request {}
 }
 jobs {
-  ["protect-develop-branch"] = (JobsPolBranchProt.protectBranch("develop", false)) {}
+  ["protect-develop-branch"] = (JobsPolBranchProt.whitelistPRHeadsToBranch("develop", """
+  "feature/"
+  "bugfix/"
+  "refactor/"
+  "chore/"
+  "bump/"
+  "dependabot/"
+  """
+  )) {}
   ["protect-release-branches"] = (JobsPolBranchProt.protectBranch("release", true)) {}
   ["protect-stable-branches"] = (JobsPolBranchProt.protectBranch("stable", true)) {}
 }

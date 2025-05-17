@@ -12,8 +12,6 @@ import "@internal/schemas/GitHubAction.pkl" as gha
 import "@internal/gha/StepsCommon.pkl"
 import "@internal/gha/UtilsCommon.pkl"
 
-local const versions = List("1")
-
 const function resolveCheck() = new gha.Job {
   name = "Resolve Check"
   steps {
