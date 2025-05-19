@@ -30,9 +30,6 @@ fi
 git checkout release/v$version
 echo
 
-i=0
-total=$count
-
 while read -r commit number title <&3; do
     pr_log="#$number"
     if git log --format=%s | grep -Fq "$pr_log"; then
@@ -44,22 +41,16 @@ while read -r commit number title <&3; do
     echo
     if git cherry-pick "$commit"; then
         echo "Cherry-picked successfully."
+        applied="yes"
     else
         echo "Conflict while cherry-picking PR #$number"
         echo "Please resolve the conflict, run 'git cherry-pick --continue', then press Enter to proceed to the next PR."
         read -rp "Press Enter when ready..."
+        applied="manual"
     fi
 
     echo
-    i=$((i + 1))
-    percent=$((i * 100 / total))
-    bar_width=40
-    filled=$((percent * bar_width / 100))
-    empty=$((bar_width - filled))
-    bar=$(printf "%0.s#" $(seq 1 $filled))
-    spaces=$(printf "%0.s-" $(seq 1 $empty))
-
-    printf "\r[%s%s] %d%% - PR #%s: %s\n" "$bar" "$spaces" "$percent" "$number" "$title"
+    echo "Finished processing PR #$number: $title (Status: $applied)"
     echo
 done 3< <(echo "$prs" | jq -r '
   sort_by(.mergedAt)[] |
