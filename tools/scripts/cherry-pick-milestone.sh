@@ -34,6 +34,7 @@ while read -r commit number title <&3; do
     pr_log="#$number"
     if git log --format=%s | grep -Fq "$pr_log"; then
         echo "Skipping already applied PR #$number"
+        echo
         continue
     fi
 
