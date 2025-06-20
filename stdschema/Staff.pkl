@@ -5,15 +5,14 @@
 // ==-----------------------------------------------------------== //
 
 @ModuleInfo { minPklVersion = "0.27.0" }
-module necronux.stdschema.Base.tests
+open module necronux.stdschema.Staff
 
-amends "pkl:test"
+hidden const schemaPklProjectversion = "1.0.0-dev"
+const schemaVersion: String = schemaPklProjectversion
 
-import "pkl:test"
-import "../schema/Base.pkl"
-
-examples {
-  ["basic"] {
-    import("../examples/TestBundle.pkl").output.text
-  }
+open class Staff {
+  installAllRequiredToolsOnConnect: Boolean = false
+  autoVerifySpellsAndHexesAfterCasting: Boolean = true
 }
+
+staff: Staff

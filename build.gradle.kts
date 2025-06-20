@@ -9,14 +9,6 @@ plugins {
 }
 
 pkl {
-  evaluators {
-    register("evalStdSchema") {
-      projectDir.set(file("."))
-      sourceModules.set(fileTree(projectDir) { include("schema/*.pkl") })
-      outputFile.set(file("${layout.buildDirectory.get()}/%{moduleName}.%{outputFormat}"))
-    }
-  }
-
   tests {
     register("testStdSchema") {
       projectDir.set(file("."))

@@ -6,13 +6,14 @@
 
 amends "pkl:Project"
 
-local const projectVerDir = "v1"
+import "stdschema/Grimoire.pkl" as Grimoire
+
 local const gitRepo = "github.com/necronux/necronux.stdschema"
 
 package {
   name = "necronux.stdschema"
   baseUri = "package://pkg.pkl-lang.org/\(gitRepo)/\(name)"
-  version = "1.0.0-dev"
+  version = Grimoire.schemaPklProjectversion
   packageZipUrl = "https://\(gitRepo)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
   description = "The Necronux standard schema pkl project."
   authors {
@@ -25,14 +26,14 @@ package {
   exclude {
     ".github/"
     "examples/**"
+    "tests/**"
     "gradle/**"
     "gradlew"
     "gradlew.bat"
-    "tests/**"
-    "tools/**"
     "build.gradle.kts"
     "settings.gradle.kts"
     "justfile"
+    "tools/**"
   }
 }
 

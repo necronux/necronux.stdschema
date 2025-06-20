@@ -11,13 +11,13 @@ sbom:
 runpkl:
     just resolve
     just eval
+    just test
 
 resolve:
     just resolve-stdschema
     just resolve-stdschemapklci
 
 eval:
-    just eval-stdschema
     just eval-stdschemapklci
 
 test:
@@ -34,9 +34,6 @@ resolve-stdschema:
 eval-stdschemapklci:
     ./gradlew evalStdSchemaPklCiModules
     ./gradlew evalStdSchemaPklCiWorkflows
-
-eval-stdschema:
-    ./gradlew evalStdSchema
 
 test-stdschema:
     ./gradlew testStdSchema

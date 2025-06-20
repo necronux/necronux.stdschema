@@ -90,9 +90,6 @@ jobs:
       uses: taiki-e/install-action@v2
       with:
         tool: just
-    - name: Check if necronux.stdschema pkl modules can be evaluated
-      shell: bash
-      run: just eval-stdschema
     - name: Check if stdschema.pkl.ci pkl modules can be evaluated
       shell: bash
       run: just eval-stdschemapklci

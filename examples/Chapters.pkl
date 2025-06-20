@@ -1,0 +1,81 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+
+amends "../stdschema/Grimoire.pkl"
+
+import "pkl:Project" as pklProject
+
+grimoireMetadata {
+  ...grimoireMetadata()
+}
+
+grimoireContents {
+  ...grimoireMetadata()
+  chapters {
+    ["testChapter"] {
+      ...grimoireMetadata()
+      name = "A test chapter"
+      description = "A test chapter description"
+      spells {
+        ["testSpell"] {
+          ...grimoireMetadata()
+          name = "test spell"
+          description = "test spell description"
+          castInvocation {
+            prefixArgs = "LOG=info"
+            tool {
+              new {
+                name = "bash"
+                executable = "bash"
+                provisioningStrategy {
+                  new ToolManagerProvisioningBinding {
+                    toolManager {
+                      name = "bash"
+                      executable = "bash"
+                    }
+                    provisioningCommands {
+                      new {
+                        installCommandPrefixArgs = "LOG=info"
+                        installCommand = "bash"
+                        verifyCommandPrefixArgs = "LOG=info"
+                        verifyCommand = "bash --version"
+                        uninstallCommandPrefixArgs = "LOG=info"
+                        uninstallCommand = "bash"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            executionCommand = "scripts/script.sh"
+            instrumentPath = "scripts/script.sh"
+          }
+          verifyInvocation = this.castInvocation
+          dispelInvocation = this.castInvocation
+          requiresConfirmation = false
+        }
+      }
+      hexes {
+        ["testHex"] {
+          ...grimoireMetadata()
+          name = "test hex"
+          description = "test hex description"
+          castInvocation = module.grimoireContents.chapters["testChapter"].spells["testSpell"].castInvocation
+          verifyInvocation = this.castInvocation
+          requiresConfirmation = true
+        }
+      }
+    }
+  }
+}
+
+local function grimoireMetadata() = new {
+  grimoireName = "Test Grimoire"
+  grimoireVersion = "0.0.0"
+  grimoireLicense = "Apache-2.0"
+}

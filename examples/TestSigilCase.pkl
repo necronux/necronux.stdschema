@@ -6,13 +6,14 @@
 
 @ModuleInfo { minPklVersion = "0.27.0" }
 
-amends "../schema/Base.pkl"
+amends "../stdschema/SigilCase.pkl"
 
-bundle {
-  name = "Test Bundle"
-  description = "A test bundle."
-  apps {
-    "app1"
-    "app2"
+sigilCase {
+  sigils {
+    ["secretKey1"] = "single line encrypted value"
+    ["secretKey2"] = """
+    multi line encrypted value
+    """
+    ["secretKey3"] = this["secretKey1"]
   }
 }

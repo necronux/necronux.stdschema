@@ -1,0 +1,152 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+open module necronux.stdschema.Grimoire
+
+import "pkl:Project" as pklProject
+import "pkl:semver" as pklSemver
+
+hidden const schemaPklProjectversion = "1.0.0-dev"
+const schemaVersion: String = schemaPklProjectversion
+
+typealias GrimoireName = String(!isEmpty)
+typealias GrimoireVersion = String(pklSemver.isValid(this))
+typealias GrimoireDescription = String
+typealias GrimoireAuthors = Listing<pklProject.EmailAddress>
+typealias GrimoireSourceCode = String
+typealias GrimoireWebsite = String
+typealias GrimoireDocumentation = Uri(!endsWith("/"))
+typealias GrimoireLicense = (pklProject.CommonSpdxLicenseIdentifier|String)
+typealias GrimoireLicenseText = String
+typealias GrimoireIssueTracker = String
+typealias MetadataMapping = Mapping<String, String|Boolean|Number>
+typealias GrimoireAdditionalMetadata = Mapping<String, MetadataMapping>
+
+typealias Id = String(!isEmpty)
+typealias AliasId = String(!isEmpty)
+typealias SpellInvocationType = "cast"|"verify"|"dispel"
+typealias HexInvocationType = "cast"|"verify"
+
+open class GrimoireMetadata {
+  const schemaVersion: String = schemaPklProjectversion
+
+  grimoireName: GrimoireName
+  grimoireVersion: GrimoireVersion
+  grimoireDescription: GrimoireDescription?
+  grimoireAuthors: GrimoireAuthors?
+  grimoireSourceCode: GrimoireSourceCode?
+  grimoireWebsite: GrimoireWebsite?
+  grimoireDocumentation: GrimoireDocumentation?
+  grimoireLicense: GrimoireLicense
+  grimoireLicenseText: GrimoireLicenseText?
+  grimoireIssueTracker: GrimoireIssueTracker?
+  grimoireAdditionalMetadata: GrimoireAdditionalMetadata?
+}
+
+open class ToolManager {
+  name: String(!isEmpty)
+  executable: String
+}
+
+open class ToolManagerProvisioningCommands {
+  installCommandPrefixArgs: String?
+  installCommand: String
+  verifyCommandPrefixArgs: String?
+  verifyCommand: String
+  uninstallCommandPrefixArgs: String?
+  uninstallCommand: String
+}
+
+open class ToolManagerProvisioningBinding {
+  toolManager: ToolManager
+  provisioningCommands: Listing<ToolManagerProvisioningCommands>
+}
+
+open class ToolManagerFallbacks {
+  fallbacks: Listing<ToolManagerProvisioningBinding>
+}
+
+open class Tool {
+  name: String(!isEmpty)
+  executable: String
+  provisioningStrategy: Listing<ToolManagerProvisioningBinding|ToolManagerFallbacks>
+}
+
+open class Invocation {
+  prefixArgs: String?
+  tool: Listing<Tool>
+  executionCommand: String
+  instrumentPath: String(!isEmpty)
+}
+
+open class Spell extends GrimoireMetadata {
+  const magicType: "spell"
+  name: String(!isEmpty)
+  description: String?
+
+  castInvocation: Invocation
+  verifyInvocation: Invocation
+  dispelInvocation: Invocation
+
+  requiresConfirmation: Boolean = false
+}
+
+open class Hex extends GrimoireMetadata {
+  const magicType: "hex"
+  name: String(!isEmpty)
+  description: String?
+
+  castInvocation: Invocation
+  verifyInvocation: Invocation
+
+  requiresConfirmation: Boolean = true
+}
+
+open class Chapter extends GrimoireMetadata {
+  name: String(!isEmpty)
+  description: String?
+
+  spells: Mapping<Id, Spell>?
+  hexes: Mapping<Id, Hex>?
+}
+
+open class RitualSpellStep {
+  invocationType: SpellInvocationType
+  spell: Spell
+}
+
+open class RitualHexStep {
+  invocationType: HexInvocationType
+  hex: Hex
+}
+
+open class Ritual extends GrimoireMetadata {
+  name: String(!isEmpty)
+  description: String?
+
+  steps: Listing<RitualSpellStep|RitualHexStep>
+
+  requiresConfirmation: Boolean = true
+}
+
+open class GrimoireContents extends GrimoireMetadata {
+  chapters: Mapping<Id, Chapter>
+  rituals: Mapping<Id, Ritual>?
+  autoRitualsSequence: Listing<Ritual>?
+}
+
+open class LinkedGrimoire {
+  grimoireContents: GrimoireContents?
+  chapters: Mapping<AliasId, Chapter>?
+  rituals: Mapping<AliasId, Ritual>?
+  spells: Mapping<AliasId, Spell>?
+  hexes: Mapping<AliasId, Hex>?
+}
+
+grimoireMetadata: GrimoireMetadata
+grimoireContents: GrimoireContents
+linkedGrimoires: Mapping<Id, LinkedGrimoire>?

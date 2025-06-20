@@ -36,11 +36,6 @@ const function evalCheck() = new gha.Job {
     StepsCommon.checkout(null)
     StepsCommon.installAction("just")
     new {
-      name = "Check if necronux.stdschema pkl modules can be evaluated"
-      run = "just eval-stdschema"
-      shell = "bash"
-    }
-    new {
       name = "Check if stdschema.pkl.ci pkl modules can be evaluated"
       run = "just eval-stdschemapklci"
       shell = "bash"

@@ -1,0 +1,1563 @@
+examples {
+  ["staff"] {
+    """
+    schemaVersion = "1.0.0-dev"
+    staff {
+      installAllRequiredToolsOnConnect = false
+      autoVerifySpellsAndHexesAfterCasting = true
+    }
+    
+    """
+  }
+  ["sigilCase"] {
+    """
+    schemaVersion = "1.0.0-dev"
+    sigilCase {
+      sigils {
+        ["secretKey1"] = "single line encrypted value"
+        ["secretKey2"] = "multi line encrypted value"
+        ["secretKey3"] = "single line encrypted value"
+      }
+    }
+    
+    """
+  }
+  ["grimoire"] {
+    """
+    schemaVersion = "1.0.0-dev"
+    grimoireMetadata {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = "A test grimoire"
+      grimoireAuthors {
+        "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
+      }
+      grimoireSourceCode = "https://example.com"
+      grimoireWebsite = "https://example.com"
+      grimoireDocumentation = "https://docs.example.com"
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = "https://example.com/necronux.stdschema/issues"
+      grimoireAdditionalMetadata {
+        ["exampleTool"] {
+          ["flag1"] = true
+          ["depth"] = 2
+          ["title"] = "text"
+        }
+      }
+    }
+    grimoireContents {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = "A test grimoire"
+      grimoireAuthors {
+        "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
+      }
+      grimoireSourceCode = "https://example.com"
+      grimoireWebsite = "https://example.com"
+      grimoireDocumentation = "https://docs.example.com"
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = "https://example.com/necronux.stdschema/issues"
+      grimoireAdditionalMetadata {
+        ["exampleTool"] {
+          ["flag1"] = true
+          ["depth"] = 2
+          ["title"] = "text"
+        }
+      }
+      chapters {}
+      rituals = null
+      autoRitualsSequence = null
+    }
+    linkedGrimoires {}
+    
+    """
+  }
+  ["chapter"] {
+    """
+    schemaVersion = "1.0.0-dev"
+    grimoireMetadata {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = null
+      grimoireAuthors = null
+      grimoireSourceCode = null
+      grimoireWebsite = null
+      grimoireDocumentation = null
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = null
+      grimoireAdditionalMetadata = null
+    }
+    grimoireContents {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = null
+      grimoireAuthors = null
+      grimoireSourceCode = null
+      grimoireWebsite = null
+      grimoireDocumentation = null
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = null
+      grimoireAdditionalMetadata = null
+      chapters {
+        ["testChapter"] {
+          schemaVersion = "1.0.0-dev"
+          grimoireName = "Test Grimoire"
+          grimoireVersion = "0.0.0"
+          grimoireDescription = null
+          grimoireAuthors = null
+          grimoireSourceCode = null
+          grimoireWebsite = null
+          grimoireDocumentation = null
+          grimoireLicense = "Apache-2.0"
+          grimoireLicenseText = null
+          grimoireIssueTracker = null
+          grimoireAdditionalMetadata = null
+          name = "A test chapter"
+          description = "A test chapter description"
+          spells {
+            ["testSpell"] {
+              schemaVersion = "1.0.0-dev"
+              grimoireName = "Test Grimoire"
+              grimoireVersion = "0.0.0"
+              grimoireDescription = null
+              grimoireAuthors = null
+              grimoireSourceCode = null
+              grimoireWebsite = null
+              grimoireDocumentation = null
+              grimoireLicense = "Apache-2.0"
+              grimoireLicenseText = null
+              grimoireIssueTracker = null
+              grimoireAdditionalMetadata = null
+              magicType = "spell"
+              name = "test spell"
+              description = "test spell description"
+              castInvocation {
+                prefixArgs = "LOG=info"
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = "LOG=info"
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = "LOG=info"
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = "LOG=info"
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              verifyInvocation {
+                prefixArgs = "LOG=info"
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = "LOG=info"
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = "LOG=info"
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = "LOG=info"
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              dispelInvocation {
+                prefixArgs = "LOG=info"
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = "LOG=info"
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = "LOG=info"
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = "LOG=info"
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              requiresConfirmation = false
+            }
+          }
+          hexes {
+            ["testHex"] {
+              schemaVersion = "1.0.0-dev"
+              grimoireName = "Test Grimoire"
+              grimoireVersion = "0.0.0"
+              grimoireDescription = null
+              grimoireAuthors = null
+              grimoireSourceCode = null
+              grimoireWebsite = null
+              grimoireDocumentation = null
+              grimoireLicense = "Apache-2.0"
+              grimoireLicenseText = null
+              grimoireIssueTracker = null
+              grimoireAdditionalMetadata = null
+              magicType = "hex"
+              name = "test hex"
+              description = "test hex description"
+              castInvocation {
+                prefixArgs = "LOG=info"
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = "LOG=info"
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = "LOG=info"
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = "LOG=info"
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              verifyInvocation {
+                prefixArgs = "LOG=info"
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = "LOG=info"
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = "LOG=info"
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = "LOG=info"
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              requiresConfirmation = true
+            }
+          }
+        }
+      }
+      rituals = null
+      autoRitualsSequence = null
+    }
+    linkedGrimoires = null
+    
+    """
+  }
+  ["ritual"] {
+    """
+    schemaVersion = "1.0.0-dev"
+    grimoireMetadata {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = null
+      grimoireAuthors = null
+      grimoireSourceCode = null
+      grimoireWebsite = null
+      grimoireDocumentation = null
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = null
+      grimoireAdditionalMetadata = null
+    }
+    grimoireContents {
+      schemaVersion = "1.0.0-dev"
+      grimoireName = "Test Grimoire"
+      grimoireVersion = "0.0.0"
+      grimoireDescription = null
+      grimoireAuthors = null
+      grimoireSourceCode = null
+      grimoireWebsite = null
+      grimoireDocumentation = null
+      grimoireLicense = "Apache-2.0"
+      grimoireLicenseText = null
+      grimoireIssueTracker = null
+      grimoireAdditionalMetadata = null
+      chapters {
+        ["testChapter"] {
+          schemaVersion = "1.0.0-dev"
+          grimoireName = "Test Grimoire"
+          grimoireVersion = "0.0.0"
+          grimoireDescription = null
+          grimoireAuthors = null
+          grimoireSourceCode = null
+          grimoireWebsite = null
+          grimoireDocumentation = null
+          grimoireLicense = "Apache-2.0"
+          grimoireLicenseText = null
+          grimoireIssueTracker = null
+          grimoireAdditionalMetadata = null
+          name = "A test chapter"
+          description = null
+          spells {
+            ["testSpell"] {
+              schemaVersion = "1.0.0-dev"
+              grimoireName = "Test Grimoire"
+              grimoireVersion = "0.0.0"
+              grimoireDescription = null
+              grimoireAuthors = null
+              grimoireSourceCode = null
+              grimoireWebsite = null
+              grimoireDocumentation = null
+              grimoireLicense = "Apache-2.0"
+              grimoireLicenseText = null
+              grimoireIssueTracker = null
+              grimoireAdditionalMetadata = null
+              magicType = "spell"
+              name = "test spell"
+              description = null
+              castInvocation {
+                prefixArgs = null
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = null
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = null
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = null
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              verifyInvocation {
+                prefixArgs = null
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = null
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = null
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = null
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              dispelInvocation {
+                prefixArgs = null
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = null
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = null
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = null
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              requiresConfirmation = false
+            }
+          }
+          hexes {
+            ["testHex"] {
+              schemaVersion = "1.0.0-dev"
+              grimoireName = "Test Grimoire"
+              grimoireVersion = "0.0.0"
+              grimoireDescription = null
+              grimoireAuthors = null
+              grimoireSourceCode = null
+              grimoireWebsite = null
+              grimoireDocumentation = null
+              grimoireLicense = "Apache-2.0"
+              grimoireLicenseText = null
+              grimoireIssueTracker = null
+              grimoireAdditionalMetadata = null
+              magicType = "hex"
+              name = "test hex"
+              description = null
+              castInvocation {
+                prefixArgs = null
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = null
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = null
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = null
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              verifyInvocation {
+                prefixArgs = null
+                tool {
+                  new {
+                    name = "bash"
+                    executable = "bash"
+                    provisioningStrategy {
+                      new {
+                        toolManager {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          new {
+                            installCommandPrefixArgs = null
+                            installCommand = "bash"
+                            verifyCommandPrefixArgs = null
+                            verifyCommand = "bash --version"
+                            uninstallCommandPrefixArgs = null
+                            uninstallCommand = "bash"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+                executionCommand = "scripts/script.sh"
+                instrumentPath = "scripts/script.sh"
+              }
+              requiresConfirmation = false
+            }
+          }
+        }
+      }
+      rituals {
+        ["testRitual"] {
+          schemaVersion = "1.0.0-dev"
+          grimoireName = "Test Grimoire"
+          grimoireVersion = "0.0.0"
+          grimoireDescription = null
+          grimoireAuthors = null
+          grimoireSourceCode = null
+          grimoireWebsite = null
+          grimoireDocumentation = null
+          grimoireLicense = "Apache-2.0"
+          grimoireLicenseText = null
+          grimoireIssueTracker = null
+          grimoireAdditionalMetadata = null
+          name = "A test ritual"
+          description = "A test ritual description"
+          steps {
+            new {
+              invocationType = "cast"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "verify"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "dispel"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "cast"
+              hex {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "hex"
+                name = "test hex"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "verify"
+              hex {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "hex"
+                name = "test hex"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+          }
+          requiresConfirmation = true
+        }
+      }
+      autoRitualsSequence {
+        new {
+          schemaVersion = "1.0.0-dev"
+          grimoireName = "Test Grimoire"
+          grimoireVersion = "0.0.0"
+          grimoireDescription = null
+          grimoireAuthors = null
+          grimoireSourceCode = null
+          grimoireWebsite = null
+          grimoireDocumentation = null
+          grimoireLicense = "Apache-2.0"
+          grimoireLicenseText = null
+          grimoireIssueTracker = null
+          grimoireAdditionalMetadata = null
+          name = "A test ritual"
+          description = "A test ritual description"
+          steps {
+            new {
+              invocationType = "cast"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "verify"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "dispel"
+              spell {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "spell"
+                name = "test spell"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                dispelInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "cast"
+              hex {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "hex"
+                name = "test hex"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+            new {
+              invocationType = "verify"
+              hex {
+                schemaVersion = "1.0.0-dev"
+                grimoireName = "Test Grimoire"
+                grimoireVersion = "0.0.0"
+                grimoireDescription = null
+                grimoireAuthors = null
+                grimoireSourceCode = null
+                grimoireWebsite = null
+                grimoireDocumentation = null
+                grimoireLicense = "Apache-2.0"
+                grimoireLicenseText = null
+                grimoireIssueTracker = null
+                grimoireAdditionalMetadata = null
+                magicType = "hex"
+                name = "test hex"
+                description = null
+                castInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                verifyInvocation {
+                  prefixArgs = null
+                  tool {
+                    new {
+                      name = "bash"
+                      executable = "bash"
+                      provisioningStrategy {
+                        new {
+                          toolManager {
+                            name = "bash"
+                            executable = "bash"
+                          }
+                          provisioningCommands {
+                            new {
+                              installCommandPrefixArgs = null
+                              installCommand = "bash"
+                              verifyCommandPrefixArgs = null
+                              verifyCommand = "bash --version"
+                              uninstallCommandPrefixArgs = null
+                              uninstallCommand = "bash"
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                  executionCommand = "scripts/script.sh"
+                  instrumentPath = "scripts/script.sh"
+                }
+                requiresConfirmation = false
+              }
+            }
+          }
+          requiresConfirmation = true
+        }
+      }
+    }
+    linkedGrimoires = null
+    
+    """
+  }
+}
