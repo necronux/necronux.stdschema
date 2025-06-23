@@ -7,7 +7,7 @@
 @ModuleInfo { minPklVersion = "0.27.0" }
 open module necronux.stdschema.Staff
 
-hidden const stdSchemaPklProjectVersion = "0.1.0-dev"
+hidden const stdSchemaPklProjectVersion = "0.1.0-rc.1"
 const stdSchemaVersion: String = stdSchemaPklProjectVersion
 
 open class Staff {

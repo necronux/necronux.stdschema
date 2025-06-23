@@ -10,7 +10,7 @@ open module necronux.stdschema.Grimoire
 import "pkl:Project" as pklProject
 import "pkl:semver" as pklSemver
 
-hidden const stdSchemaPklProjectVersion = "0.1.0-dev"
+hidden const stdSchemaPklProjectVersion = "0.1.0-rc.1"
 const stdSchemaVersion: String = stdSchemaPklProjectVersion
 
 typealias GrimoireName = String(!isEmpty)
