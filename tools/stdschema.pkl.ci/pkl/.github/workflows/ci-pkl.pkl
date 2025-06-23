@@ -38,12 +38,14 @@ on {
 jobs {
   ["conclusion"] = (JobsConcl.conclusion()) {
     needs {
+      "versioncheck"
       "resolvecheck"
       "evalcheck"
       "test"
     }
   }
 
+  ["versioncheck"] = (CiPklJobs.versionCheck()) {}
   ["resolvecheck"] = (CiPklJobs.resolveCheck()) {}
   ["evalcheck"] = (CiPklJobs.evalCheck()) {}
   ["test"] = (CiPklJobs.tests()) {}

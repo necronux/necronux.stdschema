@@ -49,6 +49,7 @@ jobs:
     name: Conclusion
     if: ${{ !cancelled() }}
     needs:
+    - versioncheck
     - resolvecheck
     - evalcheck
     - test
@@ -62,6 +63,39 @@ jobs:
       run: |-
         jq -C <<< '${{ toJson(needs) }}'
         jq --exit-status 'all(.result == "success")' <<< '${{ toJson(needs) }}'
+  versioncheck:
+    name: Version Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Check if pkl project version is same in all stdschema files
+      shell: bash
+      run: |-
+        files=("stdschema/Grimoire.pkl" "stdschema/SigilCase.pkl" "stdschema/Staff.pkl")
+        versions=()
+
+        for file in "${files[@]}"; do
+          version=$(awk -F '"' '/stdSchemaPklProjectVersion *=/ {print $2; exit}' "$file")
+          if [ -z "$version" ]; then
+            echo "Error: No version found in $file"
+            exit 1
+          fi
+          echo "Extracted version from $file: '$version'"
+          versions+=("$version")
+        done
+
+        first="${versions[0]}"
+        for v in "${versions[@]:1}"; do
+          if [ "$v" != "$first" ]; then
+            echo "Error: Inconsistent stdSchemaPklProjectVersion values detected."
+            echo "Versions found: ${versions[*]}"
+            exit 1
+          fi
+        done
   resolvecheck:
     name: Resolve Check
     runs-on: ubuntu-latest
