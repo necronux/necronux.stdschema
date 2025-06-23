@@ -1,7 +1,7 @@
 examples {
   ["staff"] {
     """
-    stdSchemaVersion = "0.1.0-dev"
+    stdSchemaVersion = "1.0.0-dev"
     staff {
       installAllRequiredToolsOnConnect = false
       autoVerifySpellsAndHexesAfterCasting = true
@@ -11,7 +11,7 @@ examples {
   }
   ["sigilCase"] {
     """
-    stdSchemaVersion = "0.1.0-dev"
+    stdSchemaVersion = "1.0.0-dev"
     sigilCase {
       sigils {
         ["secretKey1"] = "single line encrypted value"
@@ -24,9 +24,9 @@ examples {
   }
   ["grimoire"] {
     """
-    stdSchemaVersion = "0.1.0-dev"
+    stdSchemaVersion = "1.0.0-dev"
     grimoireMetadata {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = "A test grimoire"
@@ -48,7 +48,7 @@ examples {
       }
     }
     grimoireContents {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = "A test grimoire"
@@ -78,9 +78,9 @@ examples {
   }
   ["chapter"] {
     """
-    stdSchemaVersion = "0.1.0-dev"
+    stdSchemaVersion = "1.0.0-dev"
     grimoireMetadata {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = null
@@ -94,7 +94,7 @@ examples {
       grimoireAdditionalMetadata = null
     }
     grimoireContents {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = null
@@ -108,7 +108,7 @@ examples {
       grimoireAdditionalMetadata = null
       chapters {
         ["testChapter"] {
-          stdSchemaVersion = "0.1.0-dev"
+          stdSchemaVersion = "1.0.0-dev"
           grimoireName = "Test Grimoire"
           grimoireVersion = "0.0.0"
           grimoireDescription = null
@@ -124,7 +124,7 @@ examples {
           description = "A test chapter description"
           spells {
             ["testSpell"] {
-              stdSchemaVersion = "0.1.0-dev"
+              stdSchemaVersion = "1.0.0-dev"
               grimoireName = "Test Grimoire"
               grimoireVersion = "0.0.0"
               grimoireDescription = null
@@ -231,7 +231,7 @@ examples {
           }
           hexes {
             ["testHex"] {
-              stdSchemaVersion = "0.1.0-dev"
+              stdSchemaVersion = "1.0.0-dev"
               grimoireName = "Test Grimoire"
               grimoireVersion = "0.0.0"
               grimoireDescription = null
@@ -318,9 +318,9 @@ examples {
   }
   ["ritual"] {
     """
-    stdSchemaVersion = "0.1.0-dev"
+    stdSchemaVersion = "1.0.0-dev"
     grimoireMetadata {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = null
@@ -334,7 +334,7 @@ examples {
       grimoireAdditionalMetadata = null
     }
     grimoireContents {
-      stdSchemaVersion = "0.1.0-dev"
+      stdSchemaVersion = "1.0.0-dev"
       grimoireName = "Test Grimoire"
       grimoireVersion = "0.0.0"
       grimoireDescription = null
@@ -348,7 +348,7 @@ examples {
       grimoireAdditionalMetadata = null
       chapters {
         ["testChapter"] {
-          stdSchemaVersion = "0.1.0-dev"
+          stdSchemaVersion = "1.0.0-dev"
           grimoireName = "Test Grimoire"
           grimoireVersion = "0.0.0"
           grimoireDescription = null
@@ -364,7 +364,7 @@ examples {
           description = null
           spells {
             ["testSpell"] {
-              stdSchemaVersion = "0.1.0-dev"
+              stdSchemaVersion = "1.0.0-dev"
               grimoireName = "Test Grimoire"
               grimoireVersion = "0.0.0"
               grimoireDescription = null
@@ -471,7 +471,7 @@ examples {
           }
           hexes {
             ["testHex"] {
-              stdSchemaVersion = "0.1.0-dev"
+              stdSchemaVersion = "1.0.0-dev"
               grimoireName = "Test Grimoire"
               grimoireVersion = "0.0.0"
               grimoireDescription = null
@@ -551,7 +551,7 @@ examples {
       }
       rituals {
         ["testRitual"] {
-          stdSchemaVersion = "0.1.0-dev"
+          stdSchemaVersion = "1.0.0-dev"
           grimoireName = "Test Grimoire"
           grimoireVersion = "0.0.0"
           grimoireDescription = null
@@ -569,7 +569,7 @@ examples {
             new {
               invocationType = "cast"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -677,7 +677,7 @@ examples {
             new {
               invocationType = "verify"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -785,7 +785,7 @@ examples {
             new {
               invocationType = "dispel"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -893,7 +893,7 @@ examples {
             new {
               invocationType = "cast"
               hex {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -972,7 +972,7 @@ examples {
             new {
               invocationType = "verify"
               hex {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -1054,7 +1054,7 @@ examples {
       }
       autoRitualsSequence {
         new {
-          stdSchemaVersion = "0.1.0-dev"
+          stdSchemaVersion = "1.0.0-dev"
           grimoireName = "Test Grimoire"
           grimoireVersion = "0.0.0"
           grimoireDescription = null
@@ -1072,7 +1072,7 @@ examples {
             new {
               invocationType = "cast"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -1180,7 +1180,7 @@ examples {
             new {
               invocationType = "verify"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -1288,7 +1288,7 @@ examples {
             new {
               invocationType = "dispel"
               spell {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -1396,7 +1396,7 @@ examples {
             new {
               invocationType = "cast"
               hex {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
@@ -1475,7 +1475,7 @@ examples {
             new {
               invocationType = "verify"
               hex {
-                stdSchemaVersion = "0.1.0-dev"
+                stdSchemaVersion = "1.0.0-dev"
                 grimoireName = "Test Grimoire"
                 grimoireVersion = "0.0.0"
                 grimoireDescription = null
