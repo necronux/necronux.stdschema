@@ -19,12 +19,14 @@ if [ -z "$NEW_VERSION" ]; then
 fi
 
 PKL_FILES=(
-    "PklProject"
+    "stdschema/Grimoire.pkl"
+    "stdschema/SigilCase.pkl"
+    "stdschema/Staff.pkl"
 )
 
 for PKL_FILE in "${PKL_FILES[@]}"; do
     if [ -f "$PKL_FILE" ]; then
-        sed -i "s/version = \".*\"/version = \"$NEW_VERSION\"/" "$PKL_FILE"
+        sed -i "s/hidden const stdSchemaPklProjectVersion = \".*\"/hidden const stdSchemaPklProjectVersion = \"$NEW_VERSION\"/" "$PKL_FILE"
         echo "Successfully updated $PKL_FILE to version: $NEW_VERSION"
     else
         echo "Warning: $PKL_FILE not found. Skipping."

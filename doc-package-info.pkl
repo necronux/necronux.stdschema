@@ -1,0 +1,19 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+/// The Necronux standard schema.
+amends "pkl:DocPackageInfo"
+
+import "stdschema/Grimoire.pkl" as Grimoire
+
+name = "necronux.stdschema"
+version = Grimoire.stdSchemaPklProjectVersion
+importUri = "package://pkg.pkl-lang.org/github.com/necronux/\(name)/\(name)@\(version)/"
+authors {
+  "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
+}
+sourceCode = "https://github.com/necronux/\(name)"
+issueTracker = "\(sourceCode)/issues"

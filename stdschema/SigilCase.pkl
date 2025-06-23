@@ -7,8 +7,8 @@
 @ModuleInfo { minPklVersion = "0.27.0" }
 open module necronux.stdschema.SigilCase
 
-hidden const schemaPklProjectversion = "1.0.0-dev"
-const schemaVersion: String = schemaPklProjectversion
+hidden const stdSchemaPklProjectVersion = "0.1.0-dev"
+const stdSchemaVersion: String = stdSchemaPklProjectVersion
 
 typealias Key = String(!isEmpty)
 typealias Value = String(!isEmpty)

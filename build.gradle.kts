@@ -6,6 +6,7 @@
 
 plugins {
   id("org.pkl-lang") version "0.28.2"
+  base
 }
 
 pkl {
@@ -30,4 +31,20 @@ pkl {
       }
     }
   }
+
+  pkldocGenerators {
+    register("makeStdSchemaPklDoc") {
+      projectDir.set(file("."))
+      sourceModules.set(fileTree(projectDir) {
+        include("stdschema/*.pkl")
+        include("doc-package-info.pkl")
+        include("docsite-info.pkl")
+      })
+      outputDir = (layout.projectDirectory.dir("tmp-docs"))
+    }
+  }
+}
+
+tasks.check {
+  dependsOn("makeStdSchemaPklDoc")
 }

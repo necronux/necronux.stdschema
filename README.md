@@ -10,7 +10,7 @@
 
 # necronux.stdschema
 
-The Necronux StdSchema.
+The Necronux standard schema.
 
 [Website][Necronux] | [Getting Started] | [Learn] | [Documentation] | [Contributing]
 </div>

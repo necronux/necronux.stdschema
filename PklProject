@@ -7,32 +7,30 @@
 amends "pkl:Project"
 
 import "stdschema/Grimoire.pkl" as Grimoire
-
-local const gitRepo = "github.com/necronux/necronux.stdschema"
+import "doc-package-info.pkl" as doc
 
 package {
-  name = "necronux.stdschema"
-  baseUri = "package://pkg.pkl-lang.org/\(gitRepo)/\(name)"
-  version = Grimoire.schemaPklProjectversion
-  packageZipUrl = "https://\(gitRepo)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
-  description = "The Necronux standard schema pkl project."
-  authors {
-    "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
-  }
-  sourceCode = "https://\(gitRepo)"
-  sourceCodeUrlScheme = "https://\(gitRepo)/blob/\(name)@\(version)%{path}#L%{line}-%{endLine}"
+  name = doc.name
+  baseUri = "package://pkg.pkl-lang.org/github.com/necronux/\(name)/\(name)"
+  version = Grimoire.stdSchemaPklProjectVersion
+  packageZipUrl = "\(sourceCode)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
+  description = "The Necronux standard schema."
+  authors = doc.authors
+  sourceCode = doc.sourceCode
+  sourceCodeUrlScheme = "\(sourceCode)/blob/\(name)@\(version)%{path}#L%{line}-%{endLine}"
   license = "Apache-2.0"
-  issueTracker = "https://\(gitRepo)/issues"
+  issueTracker = doc.issueTracker
+  apiTests = import*("tests/**.pkl").keys.toListing()
   exclude {
     ".github/"
-    "examples/**"
-    "tests/**"
     "gradle/**"
     "gradlew"
     "gradlew.bat"
     "build.gradle.kts"
     "settings.gradle.kts"
     "justfile"
+    "examples/**"
+    "tests/**"
     "tools/**"
   }
 }

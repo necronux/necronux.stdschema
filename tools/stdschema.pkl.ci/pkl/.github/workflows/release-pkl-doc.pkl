@@ -1,0 +1,38 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+module ReleasePklDoc
+
+amends "@internal/schemas/GitHubAction.pkl"
+
+import "@internal/gha/JobsReleasePklDoc.pkl" as JobsPklDoc
+import "@internal/gha/UtilsCommon.pkl"
+
+headercomment = UtilsCommon.headerComment("2025", "Nayan Patil <nayantsg@proton.me>", "Apache-2.0")
+name = "Release-Pkl-Doc"
+permissions = (UtilsCommon.contentPermissions("read")) {}
+
+on {
+  push {
+    branches {
+      "stable/**"
+    }
+  }
+}
+jobs {
+  ["check-stable-version"] = (JobsPklDoc.checkStableVersion()) {}
+  ["generate-pkl-doc"] = (JobsPklDoc.generatePklDoc("tmp-docs", "docs", "just make-stdschemapkldoc")) {
+    needs {
+      "check-stable-version"
+    }
+  }
+  ["deploy-doc-to-pages"] = (JobsPklDoc.deployDocToPages()) {
+    needs {
+      "generate-pkl-doc"
+    }
+  }
+}

@@ -1,0 +1,114 @@
+# ==-----------------------------------------------------------== #
+# SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+#
+# SPDX-License-Identifier: Apache-2.0
+# ==-----------------------------------------------------------== #
+
+# Do not modify!
+# This file was generated from a template using necronux.internal.pkl project.
+# Any changes should be made to the template, not this file.
+
+name: Release-Pkl-Doc
+'on':
+  push:
+    branches:
+    - stable/**
+permissions:
+  contents: read
+jobs:
+  check-stable-version:
+    name: Check if Pkl Project Version is Stable
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      is_stable: ${{ steps.check_version.outputs.is_stable }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Extract and check version
+      id: check_version
+      run: |-
+        VERSION=$(awk -F '"' '/version *=/ {print $2; exit}' doc-package-info.pkl)
+        echo "Extracted necronux.internal.pkl PklProject version: '$VERSION'"
+
+        if [[ "$VERSION" =~ [+-] ]]; then
+          echo "Pre-release or metadata detected in version: $VERSION"
+          echo "Only stable versions are allowed to get docs generated, skipping docs generation..."
+          echo "is_stable=false" >> "$GITHUB_OUTPUT"
+        else
+          echo "Version is stable"
+          echo "is_stable=true" >> "$GITHUB_OUTPUT"
+        fi
+  generate-pkl-doc:
+    name: Generate Pkl Doc
+    if: ${{ needs.check-stable-version.outputs.is_stable == 'true' }}
+    needs:
+    - check-stable-version
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      has_changes: ${{ steps.detect_changes.outputs.has_changes }}
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+    - name: Setup worktree for docs
+      run: |-
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git worktree add tmp-docs docs
+    - name: Install just
+      uses: taiki-e/install-action@v2
+      with:
+        tool: just
+    - name: Generate pkl doc
+      shell: bash
+      run: just make-stdschemapkldoc
+    - name: Stage files and show diff
+      id: detect_changes
+      working-directory: tmp-docs
+      run: |-
+        git add .
+        git diff --cached --name-only
+
+        if git diff --cached --name-only --quiet; then
+          echo "No changes"
+          echo "Skipping deployment as nothing new to deploy..."
+          echo "has_changes=false" >> $GITHUB_OUTPUT
+        else
+          echo "Changes detected"
+          echo "has_changes=true" >> $GITHUB_OUTPUT
+        fi
+    - name: Commit in docs branch and push
+      if: ${{ steps.detect_changes.outputs.has_changes == 'true' }}
+      working-directory: tmp-docs
+      run: |-
+        git commit -m "Update docs"
+        git push origin docs
+    - name: Upload artifact for GitHub Pages
+      if: ${{ steps.detect_changes.outputs.has_changes == 'true' }}
+      uses: actions/upload-pages-artifact@v3
+      with:
+        path: tmp-docs
+  deploy-doc-to-pages:
+    name: Deploy Pkl Doc to GitHub Pages
+    if: ${{ needs.generate-pkl-doc.outputs.has_changes == 'true' }}
+    needs:
+    - generate-pkl-doc
+    permissions:
+      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment:
+      name: gh-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4

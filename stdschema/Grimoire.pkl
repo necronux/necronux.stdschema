@@ -10,8 +10,8 @@ open module necronux.stdschema.Grimoire
 import "pkl:Project" as pklProject
 import "pkl:semver" as pklSemver
 
-hidden const schemaPklProjectversion = "1.0.0-dev"
-const schemaVersion: String = schemaPklProjectversion
+hidden const stdSchemaPklProjectVersion = "0.1.0-dev"
+const stdSchemaVersion: String = stdSchemaPklProjectVersion
 
 typealias GrimoireName = String(!isEmpty)
 typealias GrimoireVersion = String(pklSemver.isValid(this))
@@ -32,7 +32,7 @@ typealias SpellInvocationType = "cast"|"verify"|"dispel"
 typealias HexInvocationType = "cast"|"verify"
 
 open class GrimoireMetadata {
-  const schemaVersion: String = schemaPklProjectversion
+  const stdSchemaVersion: String = stdSchemaPklProjectVersion
 
   grimoireName: GrimoireName
   grimoireVersion: GrimoireVersion

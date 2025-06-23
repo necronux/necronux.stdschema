@@ -1,0 +1,10 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+/// Documentation for pkl packages maintained on [necronux.stdschema](https://github.com/necronux/necronux.stdschema) repository.
+amends "pkl:DocsiteInfo"
+
+title = "Packages"

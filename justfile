@@ -23,6 +23,9 @@ eval:
 test:
     just test-stdschema
 
+doc:
+  just make-stdschemapkldoc
+
 # Following subcommands are used in ci
 
 resolve-stdschemapklci:
@@ -40,3 +43,6 @@ test-stdschema:
 
 make-stdschemapkg:
     ./gradlew makeStdSchemaPkg
+
+make-stdschemapkldoc:
+    ./gradlew makeStdSchemaPklDoc

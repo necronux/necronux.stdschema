@@ -22,10 +22,16 @@ concurrency = (UtilsCommon.concurrencyPROrRef()) {}
 
 on {
   pull_request {
-    paths = (TriggersPkl.pklPaths()) {}
+    paths = (TriggersPkl.pklPaths()) {
+      "stdschema/**"
+      "tools/stdschema.pkl.ci/**"
+    }
   }
   push {
-    paths = (TriggersPkl.pklPaths()) {}
+    paths = (TriggersPkl.pklPaths()) {
+      "stdschema/**"
+      "tools/stdschema.pkl.ci/**"
+    }
   }
   workflow_dispatch {}
 }
