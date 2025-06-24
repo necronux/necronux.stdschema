@@ -4,149 +4,409 @@
 // SPDX-License-Identifier: Apache-2.0
 // ==-----------------------------------------------------------== //
 
+/// A template for writing Necronux grimoire.
 @ModuleInfo { minPklVersion = "0.27.0" }
 open module necronux.stdschema.Grimoire
 
 import "pkl:Project" as pklProject
 import "pkl:semver" as pklSemver
 
-hidden const stdSchemaPklProjectVersion = "0.2.0-dev"
-const stdSchemaVersion: String = stdSchemaPklProjectVersion
-
-typealias GrimoireName = String(!isEmpty)
-typealias GrimoireVersion = String(pklSemver.isValid(this))
-typealias GrimoireDescription = String
-typealias GrimoireAuthors = Listing<pklProject.EmailAddress>
-typealias GrimoireSourceCode = String
-typealias GrimoireWebsite = String
-typealias GrimoireDocumentation = Uri(!endsWith("/"))
-typealias GrimoireLicense = (pklProject.CommonSpdxLicenseIdentifier|String)
-typealias GrimoireLicenseText = String
-typealias GrimoireIssueTracker = String
-typealias MetadataMapping = Mapping<String, String|Boolean|Number>
-typealias GrimoireAdditionalMetadata = Mapping<String, MetadataMapping>
-
-typealias Id = String(!isEmpty)
-typealias AliasId = String(!isEmpty)
+/// The invocation type supported for spells.
 typealias SpellInvocationType = "cast"|"verify"|"dispel"
+
+/// The invocation type supported for hexes.
 typealias HexInvocationType = "cast"|"verify"
 
+/// The grimoire metadata.
 open class GrimoireMetadata {
-  const stdSchemaVersion: String = stdSchemaPklProjectVersion
+  /// The version of standard schema used for this grimoire.
+  const stdSchemaVersion: String = module.stdSchemaVersion
 
-  grimoireName: GrimoireName
-  grimoireVersion: GrimoireVersion
-  grimoireDescription: GrimoireDescription?
-  grimoireAuthors: GrimoireAuthors?
-  grimoireSourceCode: GrimoireSourceCode?
-  grimoireWebsite: GrimoireWebsite?
-  grimoireDocumentation: GrimoireDocumentation?
-  grimoireLicense: GrimoireLicense
-  grimoireLicenseText: GrimoireLicenseText?
-  grimoireIssueTracker: GrimoireIssueTracker?
-  grimoireAdditionalMetadata: GrimoireAdditionalMetadata?
+  /// The name of this grimoire.
+  ///
+  /// The grimoire name is only used for display purposes.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireName = "mygrimoire"
+  /// ```
+  grimoireName: String
+
+  /// The version of this grimoire package.
+  ///
+  /// Must adhere to semantic versioning.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireVersion = "1.1.0"
+  /// ```
+  grimoireVersion: String(pklSemver.isValid(this))
+
+  /// The description of this grimoire.
+  grimoireDescription: String?
+
+  /// The maintainers' emails for this grimoire package.
+  ///
+  /// Email addresses must adhere to
+  /// [RFC5322 mailbox](https://www.rfc-editor.org/rfc/rfc5322#section-3.4) specification.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireAuthors { "John Doe <john.doe@example.com>" }
+  /// ```
+  grimoireAuthors: Listing<pklProject.EmailAddress>?
+
+  /// The source code repository for this grimoire package.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireSourceCode = "https://github.com/myorg/mygrimoireproject"
+  /// ```
+  grimoireSourceCode: String?
+
+  /// The website for this grimoire package.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireWebsite = "https://example.com/mygrimoireproject"
+  /// ```
+  grimoireWebsite: String?
+
+  /// The web URL of the Pkldoc documentation for this grimoire package.
+  grimoireDocumentation: Uri(!endsWith("/"))?
+
+  /// The path to this grimoire package’s README file.
+  grimoireReadme: String?
+
+  /// The license associated with this grimoire package.
+  ///
+  /// If using a common license, use its [SPDX license identifier](https://spdx.org/licenses/).
+  ///
+  /// If using multiple common licenses, use a
+  /// [SPDX license expression syntax version 2.0 string](https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/).
+  /// For example: `"Apache-2.0 or MIT"`.
+  ///
+  /// If using an uncommon license, also provide its full text in the [licenseText] property.
+  ///
+  /// Example:
+  /// ```
+  /// grimoireLicense = "Apache-2.0"
+  /// ```
+  grimoireLicense: pklProject.CommonSpdxLicenseIdentifier|String
+
+  /// The full text of the license associated with this grimoire package.
+  grimoireLicenseText: String?
+
+  /// The web URL of the issue tracker for this grimoire package.
+  grimoireIssueTracker: String?
+
+  /// The keywords (tags) associated with this grimoire.
+  grimoireKeywords: Listing<String>?
+
+  /// Extra settings for external tools.
+  grimoireAdditionalMetadata: Mapping<String, Mapping<String, String|Boolean|Number>>?
 }
 
-open class ToolManager {
-  name: String(!isEmpty)
+/// A tool that has the ability to provision another tool.
+open class ToolProvisioner {
+  /// The name of this tool provisioner (tool).
+  name: String
+
+  /// The executable file name or path of this tool provisioner (tool).
+  ///
+  /// Example:
+  /// ```
+  /// executable = "/usr/bin/executableFileName"
+  /// or
+  /// executable = "executableFileName"
+  /// ```
   executable: String
 }
 
-open class ToolManagerProvisioningCommands {
+/// Commands to provision a tool.
+open class ToolProvisioningCommands {
+  /// The arguments to prepend before install command.
   installCommandPrefixArgs: String?
+
+  /// The command to install the tool.
+  ///
+  /// The install command can optionally contain appending arguments.
   installCommand: String
+
+  /// The arguments to prepend before verify command.
   verifyCommandPrefixArgs: String?
+
+  /// The command to verify tool installation.
+  ///
+  /// The verify command can optionally contain appending arguments.
   verifyCommand: String
+
+  /// The arguments to prepend before uninstall command.
   uninstallCommandPrefixArgs: String?
+
+  /// The command to uninstall the tool.
+  ///
+  /// The uninstall command can optionally contain appending arguments.
   uninstallCommand: String
 }
 
-open class ToolManagerProvisioningBinding {
-  toolManager: ToolManager
-  provisioningCommands: Listing<ToolManagerProvisioningCommands>
+/// A binding that binds a tool provisioner and tool provisioning commands for a dependent tool.
+open class ToolProvisioningBinding {
+  /// The tool provisioner used for provisioning of the dependent tool.
+  toolProvisioner: ToolProvisioner
+
+  /// The commands for provisioning of the dependent tool.
+  provisioningCommands: ToolProvisioningCommands
 }
 
-open class ToolManagerFallbacks {
-  fallbacks: Listing<ToolManagerProvisioningBinding>
+/// Tool provisioner fallbacks.
+open class ToolProvisionerFallbacks {
+  /// The fallback list of tool provisioning bindings to use if primary fails.
+  ///
+  /// This list can have fallbacks and is iterated in a sequence.
+  /// If first fails, then try second and so on.
+  fallbacks: Listing<ToolProvisioningBinding>
 }
 
+/// A tool that has the ability to take an instrument as an argument.
 open class Tool {
-  name: String(!isEmpty)
+  /// The name of this tool.
+  name: String
+
+  /// The executable file name or path of this tool.
+  ///
+  /// Example:
+  /// ```
+  /// executable = "/usr/bin/executableFileName"
+  /// or
+  /// executable = "executableFileName"
+  /// ```
   executable: String
-  provisioningStrategy: Listing<ToolManagerProvisioningBinding|ToolManagerFallbacks>
+
+  /// The strategy for provisioning this tool and its dependencies.
+  ///
+  /// Each element in this list becomes a dependency of the prior element.
+  /// If a tool has conditional dependency, for eg., bash on linux and powershell on windows then use fallbacks.
+  ///
+  /// Example:
+  /// ```
+  /// provisioningStrategy {
+  ///   new ToolProvisioningBinding { ... }
+  ///   new ToolProvisioningBinding { ... } // This becomes dependency of the previous element.
+  ///   new ToolProvisionerFallbacks {
+  ///     fallbacks {
+  ///       // This is tried first
+  ///       new ToolProvisioningBinding { ... } // This becomes dependency of the previous provisioningStrategy element.
+  ///       // If the above element fails, then this is tried
+  ///       new ToolProvisioningBinding { ... } // This becomes dependency of the previous provisioningStrategy element.
+  ///     }
+  ///   }
+  ///   new ToolProvisionerFallbacks {
+  ///     fallbacks {
+  ///       // This is tried first
+  ///       new ToolProvisioningBinding { ... } // This becomes dependency of both fallback elements of the previous element.
+  ///       // If the above element fails, then this is tried
+  ///       new ToolProvisioningBinding { ... } // This becomes dependency of both fallback elements of the previous element.
+  ///     }
+  ///   }
+  ///   new ToolProvisioningBinding { ... } // This becomes dependency of both fallback elements of the previous element.
+  /// }
+  /// ```
+  provisioningStrategy: Listing<ToolProvisioningBinding|ToolProvisionerFallbacks>
 }
 
+/// An invocation that constructs a command and defines its dependency.
+///
+/// This invocation is constructed as prefixArgs + tool.executable + executionCommand
 open class Invocation {
+  /// The arguments to prepend before execution command.
   prefixArgs: String?
-  tool: Listing<Tool>
+
+  /// The command to 'execute' the instrument.
+  ///
+  /// The execution command can optionally contain appending arguments.
   executionCommand: String
-  instrumentPath: String(!isEmpty)
+
+  /// The path to the instrument.
+  ///
+  /// The instrument can be any file or resource that the tool can take as an argument.
+  /// e.g., a script, a configuration file, or a binary artifact.
+  instrumentPath: String
+
+  /// The tool used for the invocation.
+  ///
+  /// This list can have fallbacks and is iterated in a sequence.
+  /// If first fails, then try second and so on.
+  ///
+  /// Example:
+  /// ```
+  /// tool {
+  ///   // This is tried first
+  ///   new Tool { ... }
+  ///   // If the above element fails, then this is tried
+  ///   new Tool { ... }
+  ///   // If the above element fails, then this is tried
+  ///   new Tool { ... }
+  /// }
+  /// ```
+  tool: Listing<Tool>
 }
 
+/// A logical grouping of non-destructive invocations.
 open class Spell extends GrimoireMetadata {
+  /// The type of magic.
   const magicType: "spell"
-  name: String(!isEmpty)
+
+  /// The name of this spell.
+  name: String
+
+  /// The description of this spell.
   description: String?
 
-  castInvocation: Invocation
-  verifyInvocation: Invocation
-  dispelInvocation: Invocation
-
+  /// Whether to prompt for confirmation before any type of invocation of this hex.
   requiresConfirmation: Boolean = false
-}
 
-open class Hex extends GrimoireMetadata {
-  const magicType: "hex"
-  name: String(!isEmpty)
-  description: String?
+  /// The keywords (tags) associated with this spell.
+  keywords: Listing<String>?
 
+  /// The invocation to cast / perform this spell.
   castInvocation: Invocation
+
+  /// The invocation to verify the casting of this spell.
   verifyInvocation: Invocation
 
-  requiresConfirmation: Boolean = true
+  /// The invocation to dispel / undo this spell.
+  dispelInvocation: Invocation
 }
 
-open class Chapter extends GrimoireMetadata {
-  name: String(!isEmpty)
+/// A logical grouping of destructive invocations.
+open class Hex extends GrimoireMetadata {
+  /// The type of magic.
+  const magicType: "hex"
+
+  /// The name of this hex.
+  name: String
+
+  /// The description of this hex.
   description: String?
 
-  spells: Mapping<Id, Spell>?
-  hexes: Mapping<Id, Hex>?
+  /// Whether to prompt for confirmation before any type of invocation of this hex.
+  requiresConfirmation: Boolean = false
+
+  /// The keywords (tags) associated with this hex.
+  keywords: Listing<String>?
+
+  /// The invocation to cast / perform this hex.
+  castInvocation: Invocation
+
+  /// The invocation to verify the casting of this hex.
+  verifyInvocation: Invocation
 }
 
+/// A logical grouping of spells and hexes.
+open class Chapter extends GrimoireMetadata {
+  /// The name of this chapter.
+  name: String
+
+  /// The description of this chapter.
+  description: String?
+
+  /// Spells to be associated with this chapter with an identifier.
+  spells: Mapping<String, Spell>?
+
+  /// Hexes to be associated with this chapter with an identifier.
+  hexes: Mapping<String, Hex>?
+}
+
+/// A non-destructive ritual step.
 open class RitualSpellStep {
+  /// The type of invocation to be used for the spell associated in this ritual step.
   invocationType: SpellInvocationType
+
+  /// The spell used in this ritual step.
   spell: Spell
 }
 
+/// A destructive ritual step.
 open class RitualHexStep {
+  /// The type of invocation to be used for the hex associated in this ritual step.
   invocationType: HexInvocationType
+
+  /// The hex used in this ritual step.
   hex: Hex
 }
 
+// A logical sequence of spells and hexes invocations.
 open class Ritual extends GrimoireMetadata {
-  name: String(!isEmpty)
+  /// The name of this ritual.
+  name: String
+
+  /// The description of this ritual.
   description: String?
 
-  steps: Listing<RitualSpellStep|RitualHexStep>
-
+  /// Whether to prompt for confirmation before performing this ritual.
   requiresConfirmation: Boolean = true
+
+  /// The keywords (tags) associated with this ritual.
+  keywords: Listing<String>?
+
+  /// The logical sequence of destructive and non-destructive ritual steps to perform.
+  ///
+  /// Example:
+  /// ```
+  /// steps {
+  ///   // Each step's invocation is done sequentially
+  ///   new RitualSpellStep { ... }
+  ///   new RitualHexStep { ... }
+  ///   new RitualHexStep { ... }
+  /// }
+  /// ```
+  steps: Listing<RitualSpellStep|RitualHexStep>
 }
 
+/// Contents of this grimoire.
 open class GrimoireContents extends GrimoireMetadata {
-  chapters: Mapping<Id, Chapter>
-  rituals: Mapping<Id, Ritual>?
-  autoRitualsSequence: Listing<Ritual>?
+  /// Chapters in this grimoire associated with an identifier.
+  chapters: Mapping<String, Chapter>
+
+  /// Rituals in this grimoire associated with an identifier.
+  rituals: Mapping<String, Ritual>?
+
+  /// The logical sequence of rituals to auto perform.
+  autoPerformRituals: Listing<Ritual>?
 }
 
+/// A linked (imported) grimoire.
+///
+/// A grimoire can be linked with another grimoire fully or with its individual linkable objects selectively.
 open class LinkedGrimoire {
+  /// The entire content to be linked from this linked grimoire.
   grimoireContents: GrimoireContents?
-  chapters: Mapping<AliasId, Chapter>?
-  rituals: Mapping<AliasId, Ritual>?
-  spells: Mapping<AliasId, Spell>?
-  hexes: Mapping<AliasId, Hex>?
+
+  /// The chapters to be linked from this linked grimoire associated with an alias identifier.
+  chapters: Mapping<String, Chapter>?
+
+  /// The rituals to be linked from this linked grimoire associated with an alias identifier.
+  rituals: Mapping<String, Ritual>?
+
+  /// The spells to be linked from this linked grimoire associated with an alias identifier.
+  spells: Mapping<String, Spell>?
+
+  /// The hexes to be linked from this linked grimoire associated with an alias identifier.
+  hexes: Mapping<String, Hex>?
 }
 
+/// The standard schema pkl package version.
+hidden const stdSchemaPklPkgVersion: String = "0.2.0-dev"
+
+/// The version of standard schema used for this grimoire.
+const stdSchemaVersion: String = stdSchemaPklPkgVersion
+
+/// The metadata of this grimoire that is required to be shared with all its shareable objects.
 grimoireMetadata: GrimoireMetadata
+
+/// The contents of this grimoire.
 grimoireContents: GrimoireContents
-linkedGrimoires: Mapping<Id, LinkedGrimoire>?
+
+/// The external grimoires to be linked with this grimoire with an identifier.
+linkedGrimoires: Mapping<String, LinkedGrimoire>?

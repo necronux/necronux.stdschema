@@ -12,7 +12,7 @@ import "doc-package-info.pkl" as doc
 package {
   name = doc.name
   baseUri = "package://pkg.pkl-lang.org/github.com/necronux/\(name)/\(name)"
-  version = Grimoire.stdSchemaPklProjectVersion
+  version = Grimoire.stdSchemaVersion
   packageZipUrl = "\(sourceCode)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
   description = "The Necronux standard schema."
   authors = doc.authors

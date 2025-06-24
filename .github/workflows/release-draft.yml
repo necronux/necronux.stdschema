@@ -49,7 +49,7 @@ jobs:
       shell: bash
       run: |-
         TAG_VERSION="${{ env.RELEASE_VERSION }}"
-        PKL_PROJECT_VERSION=$(awk -F '"' '/stdSchemaPklProjectVersion *=/ {print $2; exit}' stdschema/Grimoire.pkl)
+        PKL_PROJECT_VERSION=$(grep 'stdSchemaPklPkgVersion' stdschema/Grimoire.pkl | sed -n 's/.*"\(.*\)".*/\1/p')
         echo "Extracted necronux.stdschema PklProject version: '$PKL_PROJECT_VERSION'"
         if [ "$TAG_VERSION" != "$PKL_PROJECT_VERSION" ]; then
           echo "Error: Tag version ("$TAG_VERSION") does not match necronux.stdschema PklProject version ("$PKL_PROJECT_VERSION")"
