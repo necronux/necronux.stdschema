@@ -26,7 +26,7 @@ PKL_FILES=(
 
 for PKL_FILE in "${PKL_FILES[@]}"; do
     if [ -f "$PKL_FILE" ]; then
-        sed -i "s/hidden const stdSchemaPklProjectVersion = \".*\"/hidden const stdSchemaPklProjectVersion = \"$NEW_VERSION\"/" "$PKL_FILE"
+        sed -i "s|hidden const stdSchemaPklPkgVersion: String = \".*\"|hidden const stdSchemaPklPkgVersion: String = \"$NEW_VERSION\"|" "$PKL_FILE"
         echo "Successfully updated $PKL_FILE to version: $NEW_VERSION"
     else
         echo "Warning: $PKL_FILE not found. Skipping."

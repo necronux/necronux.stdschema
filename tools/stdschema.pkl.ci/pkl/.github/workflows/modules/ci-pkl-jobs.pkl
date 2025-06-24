@@ -72,7 +72,7 @@ const function versionCheck() = new gha.Job {
         versions=()
 
         for file in "${files[@]}"; do
-          version=$(awk -F '"' '/stdSchemaPklProjectVersion *=/ {print $2; exit}' "$file")
+          version=$(awk -F '"' '/^hidden const stdSchemaPklPkgVersion:/ {print $2; exit}' "$file")
           if [ -z "$version" ]; then
             echo "Error: No version found in $file"
             exit 1
@@ -84,7 +84,7 @@ const function versionCheck() = new gha.Job {
         first="${versions[0]}"
         for v in "${versions[@]:1}"; do
           if [ "$v" != "$first" ]; then
-            echo "Error: Inconsistent stdSchemaPklProjectVersion values detected."
+            echo "Error: Inconsistent stdSchemaPklPkgVersion values detected."
             echo "Versions found: ${versions[*]}"
             exit 1
           fi

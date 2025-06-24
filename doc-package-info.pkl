@@ -10,7 +10,7 @@ amends "pkl:DocPackageInfo"
 import "stdschema/Grimoire.pkl" as Grimoire
 
 name = "necronux.stdschema"
-version = Grimoire.stdSchemaPklProjectVersion
+version = Grimoire.stdSchemaVersion
 importUri = "package://pkg.pkl-lang.org/github.com/necronux/\(name)/\(name)@\(version)/"
 authors {
   "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"

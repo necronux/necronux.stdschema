@@ -19,10 +19,4 @@ examples {
   ["grimoire"] {
     import("../examples/TestGrimoire.pkl").output.text
   }
-  ["chapter"] {
-    import("../examples/Chapters.pkl").output.text
-  }
-  ["ritual"] {
-    import("../examples/Rituals.pkl").output.text
-  }
 }

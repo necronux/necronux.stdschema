@@ -10,14 +10,6 @@ amends "../stdschema/Grimoire.pkl"
 
 import "pkl:Project" as pklProject
 
-grimoireMetadata {
-  ...grimoireMetadata()
-}
-
-grimoireContents {
-  ...grimoireMetadata()
-}
-
 local function grimoireMetadata() = new {
   grimoireName = "Test Grimoire"
   grimoireVersion = "0.0.0"
@@ -30,8 +22,15 @@ local function grimoireMetadata() = new {
   grimoireDocumentation = "https://docs.example.com"
   grimoireLicense = "Apache-2.0"
   grimoireIssueTracker = "https://example.com/necronux.stdschema/issues"
+  grimoireKeywords = new Listing<String> {
+    "test"
+    "local"
+    "personal"
+    "toolName"
+    "cli"
+  }
   grimoireAdditionalMetadata = new Mapping {
-    ["exampleTool"] = new MetadataMapping {
+    ["exampleTool"] = new Mapping {
       ["flag1"] = true
       ["depth"] = 2
       ["title"] = "text"
@@ -39,5 +38,182 @@ local function grimoireMetadata() = new {
   }
 }
 
+grimoireMetadata {
+  ...grimoireMetadata()
+}
+
+grimoireContents {
+  ...grimoireMetadata()
+
+  chapters {
+    ["testChapter"] {
+      ...grimoireMetadata()
+      name = "A test chapter"
+      description = "A test chapter description"
+
+      spells {
+        ["testSpell"] {
+          ...grimoireMetadata()
+          name = "test spell"
+          description = "test spell description"
+
+          requiresConfirmation = false
+          keywords {
+            "bash"
+          }
+
+          castInvocation {
+            prefixArgs = "LOG=info"
+            executionCommand = "ansible-playbook " + instrumentPath
+            instrumentPath = "ansible/playbooks/playbook1.yml"
+
+            tool {
+              new {
+                name = "ansible"
+                executable = "ansible"
+                provisioningStrategy {
+                  new ToolProvisioningBinding {
+                    toolProvisioner {
+                      name = "yay"
+                      executable = "yay"
+                    }
+                    provisioningCommands {
+                      installCommandPrefixArgs = "LOG=info"
+                      installCommand = "yay -S ansible"
+                      verifyCommandPrefixArgs = "LOG=info"
+                      verifyCommand = "ansible --version"
+                      uninstallCommandPrefixArgs = "LOG=info"
+                      uninstallCommand = "yay -R ansible"
+                    }
+                  }
+                  new ToolProvisioningBinding {
+                    toolProvisioner {
+                      name = "paru"
+                      executable = "paru"
+                    }
+                    provisioningCommands {
+                      installCommandPrefixArgs = "LOG=info"
+                      installCommand = "paru -S yay"
+                      verifyCommandPrefixArgs = "LOG=info"
+                      verifyCommand = "yay --version"
+                      uninstallCommandPrefixArgs = "LOG=info"
+                      uninstallCommand = "paru -R ansible"
+                    }
+                  }
+                  new ToolProvisionerFallbacks {
+                    fallbacks {
+                      new ToolProvisioningBinding {
+                        toolProvisioner {
+                          name = "bash"
+                          executable = "bash"
+                        }
+                        provisioningCommands {
+                          installCommandPrefixArgs = "LOG=info"
+                          installCommand = "bash clone && cd && makepkg"
+                          verifyCommandPrefixArgs = "LOG=info"
+                          verifyCommand = "paru --version"
+                          uninstallCommandPrefixArgs = "LOG=info"
+                          uninstallCommand = "bash rm dir rm usr bin"
+                        }
+                      }
+                      new ToolProvisioningBinding {
+                        toolProvisioner {
+                          name = "zsh"
+                          executable = "zsh"
+                        }
+                        provisioningCommands {
+                          installCommandPrefixArgs = "LOG=info"
+                          installCommand = "zsh clone && cd && makepkg"
+                          verifyCommandPrefixArgs = "LOG=info"
+                          verifyCommand = "paru --version"
+                          uninstallCommandPrefixArgs = "LOG=info"
+                          uninstallCommand = "zsh rm dir rm usr bin"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+          verifyInvocation = this.castInvocation
+          dispelInvocation = this.castInvocation
+        }
+      }
+
+      hexes {
+        ["testHex"] {
+          ...grimoireMetadata()
+          name = "test hex"
+          description = "test hex description"
+
+          requiresConfirmation = true
+          keywords {
+            "bash"
+          }
+
+          castInvocation = module.grimoireContents.chapters["testChapter"].spells["testSpell"].castInvocation
+          verifyInvocation = this.castInvocation
+        }
+      }
+    }
+  }
+
+  rituals {
+    ["testRitual"] {
+      ...grimoireMetadata()
+      name = "A test ritual"
+      description = "A test ritual description"
+
+      requiresConfirmation = true
+      keywords {
+        "apex"
+      }
+
+      steps {
+        new RitualSpellStep {
+          invocationType = "cast"
+          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
+        }
+        new RitualSpellStep {
+          invocationType = "verify"
+          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
+        }
+        new RitualSpellStep {
+          invocationType = "dispel"
+          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
+        }
+        new RitualHexStep {
+          invocationType = "cast"
+          hex = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
+        }
+        new RitualHexStep {
+          invocationType = "verify"
+          hex = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
+        }
+      }
+    }
+  }
+
+  autoPerformRituals {
+    module.grimoireContents.rituals["testRitual"]
+  }
+}
+
 linkedGrimoires {
+  ["testLinkedGrimoire"] {
+    grimoireContents = module.grimoireContents
+    chapters {
+      ["testChapterAlias"] =  module.grimoireContents.chapters["testChapter"]
+    }
+    rituals {
+      ["testRitualAlias"] = module.grimoireContents.rituals["testRitual"]
+    }
+    spells {
+      ["testSpell"] = module.grimoireContents.chapters["testChapter"].spells["testSpell"]
+    }
+    hexes {
+      ["testHex"] = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
+    }
+  }
 }
