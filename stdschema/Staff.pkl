@@ -4,15 +4,28 @@
 // SPDX-License-Identifier: Apache-2.0
 // ==-----------------------------------------------------------== //
 
+/// A template for writing Necronux Staff.
 @ModuleInfo { minPklVersion = "0.27.0" }
 open module necronux.stdschema.Staff
 
-hidden const stdSchemaPklProjectVersion = "0.1.0"
-const stdSchemaVersion: String = stdSchemaPklProjectVersion
+/// The standard schema pkl package version.
+hidden const stdSchemaPklPkgVersion: String = "0.2.0"
 
+/// The version of standard schema used for this staff.
+const stdSchemaVersion: String = stdSchemaPklPkgVersion
+
+/// A staff.
 open class Staff {
+  /// Whether to install all required tools immediately after connecting the grimoire.
+  ///
+  /// Ensures all dependent tools are ready before casting or verifying.
   installAllRequiredToolsOnConnect: Boolean = false
+
+  /// Whether to automatically verify spells and hexes right after casting them.
+  ///
+  /// Enables continuous feedback on cast success.
   autoVerifySpellsAndHexesAfterCasting: Boolean = true
 }
 
+/// The staff used to configure the runtime behavior of Necronux.
 staff: Staff
