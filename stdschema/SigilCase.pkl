@@ -9,7 +9,7 @@
 open module necronux.stdschema.SigilCase
 
 /// The standard schema pkl package version.
-hidden const stdSchemaPklPkgVersion: String = "0.2.0-rc.1"
+hidden const stdSchemaPklPkgVersion: String = "0.2.0"
 
 /// The version of standard schema used for this sigil case.
 const stdSchemaVersion: String = stdSchemaPklPkgVersion
