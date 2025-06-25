@@ -9,7 +9,7 @@
 open module necronux.stdschema.Staff
 
 /// The standard schema pkl package version.
-hidden const stdSchemaPklPkgVersion: String = "0.2.0-dev"
+hidden const stdSchemaPklPkgVersion: String = "0.2.0-rc.1"
 
 /// The version of standard schema used for this staff.
 const stdSchemaVersion: String = stdSchemaPklPkgVersion
