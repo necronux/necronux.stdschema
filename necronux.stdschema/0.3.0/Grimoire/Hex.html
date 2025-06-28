@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hex (necronux.stdschema/Grimoire:0.3.0) • Packages</title>
+    <script src="../../../scripts/pkldoc.js" defer="defer"></script>
+    <script src="../../../scripts/scroll-into-view.min.js" defer="defer"></script>
+    <script src="../../../data/necronux.stdschema/0.3.0/Grimoire/Hex.js" defer="defer"></script>
+    <link href="../../../styles/pkldoc.css" media="screen" type="text/css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="../../../images/favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../images/favicon-16x16.png">
+    <meta charset="UTF-8">
+  </head>
+  <body onload="onLoad()">
+    <header>
+      <div id="doc-title"><a href="../../../index.html">Packages</a></div>
+      <div id="search"><i id="search-icon" class="material-icons">search</i><input id="search-input" type="search" placeholder="Click or press 'S' to search this package" autocomplete="off" data-package-name="necronux.stdschema" data-package-version="0.3.0" data-package-url-prefix="../" data-module-name="necronux.stdschema.Grimoire" data-class-name="Hex" data-root-url-prefix="../../../"></div>
+    </header>
+    <main><a class="declaration-parent-link" href="../../../index.html">Packages</a> &gt; <a class="declaration-parent-link" href="../index.html">necronux.stdschema</a> &gt; <a class="declaration-parent-link" href="index.html">necronux.stdschema.Grimoire</a>
+      <h1 id="declaration-title">Hex<span id="declaration-version">0.3.0</span></h1>
+      <ul class="member-group-links">
+        <li><a href="#_properties">Properties</a></li>
+        <li><a href="#_methods">Methods</a></li>
+      </ul>
+      <div id="_overview" class="anchor"> </div>
+      <div id="_declaration" class="member">
+        <div class="member-signature">open class <span class="name-decl">Hex</span> extends <a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a></div>
+        <div class="doc-comment"><p>A logical grouping of non-revertible invocation and its verification invocation.</p></div>
+        <dl class="member-info">
+          <dt class="runtime-data hidden">Known subtypes:</dt>
+          <dd id="known-subtypes" class="runtime-data hidden"></dd>
+          <dt class="runtime-data hidden">Known usages:</dt>
+          <dd id="known-usages" class="runtime-data hidden"></dd>
+          <dt class="runtime-data hidden">All versions:</dt>
+          <dd id="known-versions" class="runtime-data hidden"></dd>
+        </dl>
+      </div>
+      <div class="member-group">
+        <div id="_properties" class="anchor"> </div>
+        <h2 class="member-group-title">Properties<span class="toggle-inherited-members">(<span class="toggle-inherited-members-link button-link">show inherited</span>)</span></h2>
+        <ul>
+          <li>
+            <div id="stdSchemaVersion" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#stdSchemaVersion">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">stdSchemaVersion</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a><span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The version of standard schema used for this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireName" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireName">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireName</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a><span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The name of this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>The grimoire name is only used for display purposes.</p>
+<p>Example:</p>
+<pre><code>grimoireName = &quot;mygrimoire&quot;
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireVersion" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireVersion">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireVersion</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>(pklSemver.isValid(this))<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The version of this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Must adhere to semantic versioning.</p>
+<p>Example:</p>
+<pre><code>grimoireVersion = &quot;1.1.0&quot;
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireDescription" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireDescription">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireDescription</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The description of this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireAuthors" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireAuthors">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireAuthors</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Listing.html" class="name-ref">Listing</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/Project/#EmailAddress" class="name-ref">EmailAddress</a>&gt;?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The maintainers' emails for this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Email addresses must adhere to
+<a href="https://www.rfc-editor.org/rfc/rfc5322#section-3.4">RFC5322 mailbox</a> specification.</p>
+<p>Example:</p>
+<pre><code>grimoireAuthors { &quot;John Doe &lt;john.doe@example.com&gt;&quot; }
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireSourceCode" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireSourceCode">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireSourceCode</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The source code repository for this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Example:</p>
+<pre><code>grimoireSourceCode = &quot;https://github.com/myorg/mygrimoireproject&quot;
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireWebsite" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireWebsite">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireWebsite</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The website for this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Example:</p>
+<pre><code>grimoireWebsite = &quot;https://example.com/mygrimoireproject&quot;
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireDocumentation" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireDocumentation">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireDocumentation</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/#Uri" class="name-ref">Uri</a>(!endsWith(&quot;/&quot;))?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The web URL of the Pkldoc documentation for this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireReadme" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireReadme">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireReadme</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The path to this grimoire’s README file.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireLicense" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#grimoireLicense">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireLicense</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/Project/#CommonSpdxLicenseIdentifier" class="name-ref">CommonSpdxLicenseIdentifier</a>|<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a><span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The license associated with this grimoire.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>If using a common license, use its <a href="https://spdx.org/licenses/">SPDX license identifier</a>.</p>
+<p>If using multiple common licenses, use a
+<a href="https://spdx.github.io/spdx-spec/v2.3/SPDX-license-expressions/">SPDX license expression syntax version 2.0 string</a>.
+For example: <code>&quot;Apache-2.0 or MIT&quot;</code>.</p>
+<p>If using an uncommon license, also provide its full text in the <a href="not_found"><code>licenseText</code></a> property.</p>
+<p>Example:</p>
+<pre><code>grimoireLicense = &quot;Apache-2.0&quot;
+</code></pre></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireLicenseText" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireLicenseText">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireLicenseText</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The full text of the license associated with this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireIssueTracker" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireIssueTracker">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireIssueTracker</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The web URL of the issue tracker for this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireKeywords" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireKeywords">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireKeywords</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Listing.html" class="name-ref">Listing</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>&gt;?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>The keywords (tags) associated with this grimoire.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="grimoireAdditionalMetadata" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#grimoireAdditionalMetadata">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="GrimoireMetadata.html" class="name-ref">GrimoireMetadata</a>.</span><span class="name-decl">grimoireAdditionalMetadata</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Mapping.html" class="name-ref">Mapping</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>, <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Mapping.html" class="name-ref">Mapping</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>, (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>|<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Boolean.html" class="name-ref">Boolean</a>|<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Number.html" class="name-ref">Number</a>)&gt;&gt;?<span class="context"> (<a href="index.html" class="name-ref">necronux.stdschema.Grimoire</a>)</span></div>
+                <div class="doc-comment"><p>Extra settings for external tools.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="magicType" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#magicType">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">magicType</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a></div>
+                <div class="doc-comment"><p>The type of magic.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="name" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#name">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">name</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a></div>
+                <div class="doc-comment"><p>The name of this hex.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="description" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#description">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">description</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>?</div>
+                <div class="doc-comment"><p>The description of this hex.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="requiresConfirmation" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#requiresConfirmation">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">requiresConfirmation</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Boolean.html" class="name-ref">Boolean</a></div>
+                <div class="doc-comment"><p>Whether to prompt for confirmation before casting this hex.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="keywords" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#keywords">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">keywords</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Listing.html" class="name-ref">Listing</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>&gt;?</div>
+                <div class="doc-comment"><p>The keywords (tags) associated with this hex.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="castInvocation" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#castInvocation">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">castInvocation</span>: <a href="Invocation.html" class="name-ref">Invocation</a></div>
+                <div class="doc-comment"><p>The invocation to cast / perform this hex.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="verifyInvocation" class="anchor"> </div>
+            <div class="member"><a class="member-selflink material-icons" href="#verifyInvocation">link</a>
+              <div class="member-left">
+                <div class="member-modifiers"></div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="name-decl">verifyInvocation</span>: <a href="Invocation.html" class="name-ref">Invocation</a></div>
+                <div class="doc-comment"><p>The invocation to verify the casting of this hex.</p></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="member-group">
+        <div id="_methods" class="anchor"> </div>
+        <h2 class="member-group-title">Methods<span class="toggle-inherited-members">(<span class="toggle-inherited-members-link button-link">show inherited</span>)</span></h2>
+        <ul>
+          <li>
+            <div id="getClass()" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#getClass()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Any.html" class="name-ref">Any</a>.</span><span class="name-decl">getClass</span>(): <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Class.html" class="name-ref">Class</a><span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L43-L43">Source</a></div>
+                <div class="doc-comment"><p>Returns the class of <code>this</code>.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="toString()" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#toString()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Any.html" class="name-ref">Any</a>.</span><span class="name-decl">toString</span>(): <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a><span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L48-L48">Source</a></div>
+                <div class="doc-comment"><p>Returns a string representation of <code>this</code>.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>This method is used to convert the values of string interpolation expressions to strings.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="ifNonNull()" class="anchor"> </div>
+            <div id="ifNonNull().Result" class="anchor-param1"> </div>
+            <div id="ifNonNull().transform" class="anchor-param2"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#ifNonNull()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Any.html" class="name-ref">Any</a>.</span><span class="name-decl">ifNonNull</span>&lt;<a class="param1">Result</a>&gt;(<span class="param2">transform</span>: (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/#NonNull" class="name-ref">NonNull</a>) -&gt; <a href="Hex.html#ifNonNull().Result" class="name-ref">Result</a>): <a href="Hex.html#ifNonNull().Result" class="name-ref">Result</a>?<span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L53-L53">Source</a></div>
+                <div class="doc-comment"><p>Returns <code>this |&gt; transform</code> if <code>this</code> is non-null, and <code>null</code> otherwise.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>This method is the complement of the <code>??</code> operator and the equivalent of an <code>Option</code> type's <code>map</code> and <code>flatMap</code> methods.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="hasProperty()" class="anchor"> </div>
+            <div id="hasProperty().name" class="anchor-param1"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#hasProperty()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Typed.html" class="name-ref">Typed</a>.</span><span class="name-decl">hasProperty</span>(<span class="param1">name</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>): <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Boolean.html" class="name-ref">Boolean</a><span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L1723-L1723">Source</a></div>
+                <div class="doc-comment"><p>Tells if this object has a property with the given <code>name</code>.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="getProperty()" class="anchor"> </div>
+            <div id="getProperty().name" class="anchor-param1"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#getProperty()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Typed.html" class="name-ref">Typed</a>.</span><span class="name-decl">getProperty</span>(<span class="param1">name</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>): unknown<span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L1728-L1728">Source</a></div>
+                <div class="doc-comment"><p>Returns the value of the property with the given <code>name</code>.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Throws if a property with this name does not exist.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="getPropertyOrNull()" class="anchor"> </div>
+            <div id="getPropertyOrNull().name" class="anchor-param1"> </div>
+            <div class="member inherited expandable hidden collapsed with-expandable-docs"><i class="material-icons expandable-docs-icon">expand_more</i><a class="member-selflink material-icons" href="#getPropertyOrNull()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Typed.html" class="name-ref">Typed</a>.</span><span class="name-decl">getPropertyOrNull</span>(<span class="param1">name</span>: <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>): unknown?<span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L1733-L1733">Source</a></div>
+                <div class="doc-comment"><p>Returns the value of the property with the given <code>name</code>.</p></div>
+                <div class="doc-comment expandable hidden collapsed"><p>Returns <code>null</code> if a property with this name does not exist.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="toDynamic()" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#toDynamic()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Typed.html" class="name-ref">Typed</a>.</span><span class="name-decl">toDynamic</span>(): <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Dynamic.html" class="name-ref">Dynamic</a><span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L1736-L1736">Source</a></div>
+                <div class="doc-comment"><p>Converts this object to a <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Dynamic.html"><code>Dynamic</code></a> object.</p></div>
+              </div>
+            </div>
+          </li>
+          <li>
+            <div id="toMap()" class="anchor"> </div>
+            <div class="member inherited expandable hidden collapsed"><a class="member-selflink material-icons" href="#toMap()">link</a>
+              <div class="member-left">
+                <div class="member-modifiers">function </div>
+              </div>
+              <div class="member-main">
+                <div class="member-signature"><span class="context"><a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Typed.html" class="name-ref">Typed</a>.</span><span class="name-decl">toMap</span>(): <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Map.html" class="name-ref">Map</a>&lt;<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/String.html" class="name-ref">String</a>, unknown&gt;<span class="context"> (<a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/" class="name-ref">pkl.base</a>)</span><a class="member-source-link" href="https://github.com/apple/pkl/blob/0.28.2/stdlib/stdlib/base.pkl#L1739-L1739">Source</a></div>
+                <div class="doc-comment"><p>Converts this object to a <a href="https://pkl-lang.org/package-docs/pkl/0.28.2/base/Map.html"><code>Map</code></a>.</p></div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </body>
+</html>
