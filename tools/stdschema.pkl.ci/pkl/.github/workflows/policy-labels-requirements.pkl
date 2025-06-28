@@ -1,0 +1,42 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+module PolicyLabelsRequirements
+
+amends "@internal/schemas/GitHubAction.pkl"
+
+import "@internal/gha/JobsPolicyLabelsRequirements.pkl" as JobsPolicyLabelsReq
+import "@internal/gha/UtilsCommon.pkl"
+
+headercomment = UtilsCommon.headerComment("2025", "Nayan Patil <nayantsg@proton.me>", "Apache-2.0")
+name = "Policy-Labels-Requirements"
+permissions = (UtilsCommon.contentPermissions("read")) {}
+
+on {
+  pull_request {
+    types {
+      "opened"
+      "edited"
+      "labeled"
+      "unlabeled"
+      "synchronize"
+      "reopened"
+    }
+  }
+  issues {
+    types {
+      "opened"
+      "edited"
+      "labeled"
+      "unlabeled"
+      "reopened"
+    }
+  }
+}
+jobs {
+  ["enforce-labels-requirements"] = (JobsPolicyLabelsReq.enforceLabelsRequirements()) {}
+}

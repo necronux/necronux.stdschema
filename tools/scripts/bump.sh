@@ -20,8 +20,6 @@ fi
 
 PKL_FILES=(
     "stdschema/Grimoire.pkl"
-    "stdschema/SigilCase.pkl"
-    "stdschema/Staff.pkl"
 )
 
 for PKL_FILE in "${PKL_FILES[@]}"; do

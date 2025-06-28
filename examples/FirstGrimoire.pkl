@@ -1,0 +1,103 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+
+amends "../stdschema/Grimoire.pkl"
+
+import "pkl:Project" as pklProject
+
+local function firstGrimoireMetadata() = new {
+  grimoireName = "First Test Grimoire"
+  grimoireVersion = "0.0.0"
+  grimoireAuthors = new Listing<pklProject.EmailAddress> {
+    "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
+  }
+  grimoireLicense = "Apache-2.0"
+}
+
+grimoireMetadata {
+  ...firstGrimoireMetadata()
+}
+
+coreContents {
+  ...firstGrimoireMetadata()
+  chapters {
+    ["firstTestChapter"] {
+      ...firstGrimoireMetadata()
+      name = "First Test Chapter"
+      spells {
+        ["firstTestSpell"] {
+          ...firstGrimoireMetadata()
+          name = "Firs Test Spell"
+
+          castInvocation {
+            executionCommand = "ansible-playbook " + instrumentPath
+            instrumentPath = "ansible/playbooks/playbook1.yml"
+
+            tool {
+              new {
+                name = "ansible"
+                executable = "ansible"
+                provisioningStrategy {
+                  new ToolProvisioningBinding {
+                    toolProvisioner {
+                      name = "yay"
+                      executable = "yay"
+                    }
+                    provisioningCommands {
+                      installCommand = "yay -S ansible"
+                      verifyCommand = "ansible --version"
+                      uninstallCommand = "yay -R ansible"
+                    }
+                  }
+                }
+              }
+            }
+          }
+          verifyInvocation = this.castInvocation
+          dispelInvocation = this.castInvocation
+        }
+      }
+
+      hexes {
+        ["firstTestHex"] {
+          ...firstGrimoireMetadata()
+          name = "First Test Hex"
+
+          castInvocation = module.coreContents.chapters["firstTestChapter"].spells["firstTestSpell"].castInvocation
+          verifyInvocation = this.castInvocation
+        }
+      }
+    }
+  }
+
+  rituals {
+    ["firstTestRitual"] {
+      ...firstGrimoireMetadata()
+      name = "First Test Ritual"
+
+      steps {
+        new RitualCastStep {
+          cast = module.coreContents.chapters["firstTestChapter"].hexes["firstTestHex"]
+        }
+      }
+    }
+  }
+}
+
+sigils {
+  ["secretKey1"] = "single line encrypted value"
+  ["secretKey2"] = """
+    multi line encrypted value
+    """
+  ["secretKey3"] = this["secretKey1"]
+}
+
+enchantments {
+  installAllRequiredToolsOnConnect = false
+  autoVerifySpellsAndHexesAfterCasting = true
+}

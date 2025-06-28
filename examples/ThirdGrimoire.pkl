@@ -10,25 +10,15 @@ amends "../stdschema/Grimoire.pkl"
 
 import "pkl:Project" as pklProject
 
-local function grimoireMetadata() = new {
-  grimoireName = "Test Grimoire"
+import "SecondGrimoire.pkl" as SecondGrimoire
+
+local function thirdGrimoireMetadata() = new {
+  grimoireName = "Third Test Grimoire"
   grimoireVersion = "0.0.0"
-  grimoireDescription = "A test grimoire"
   grimoireAuthors = new Listing<pklProject.EmailAddress> {
     "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
   }
-  grimoireSourceCode = "https://example.com"
-  grimoireWebsite = "https://example.com"
-  grimoireDocumentation = "https://docs.example.com"
   grimoireLicense = "Apache-2.0"
-  grimoireIssueTracker = "https://example.com/necronux.stdschema/issues"
-  grimoireKeywords = new Listing<String> {
-    "test"
-    "local"
-    "personal"
-    "toolName"
-    "cli"
-  }
   grimoireAdditionalMetadata = new Mapping {
     ["exampleTool"] = new Mapping {
       ["flag1"] = true
@@ -39,23 +29,23 @@ local function grimoireMetadata() = new {
 }
 
 grimoireMetadata {
-  ...grimoireMetadata()
+  ...thirdGrimoireMetadata()
 }
 
-grimoireContents {
-  ...grimoireMetadata()
+coreContents {
+  ...thirdGrimoireMetadata()
 
   chapters {
-    ["testChapter"] {
-      ...grimoireMetadata()
-      name = "A test chapter"
-      description = "A test chapter description"
+    ["thirdTestChapter"] {
+      ...thirdGrimoireMetadata()
+      name = "Third Test Chapter"
+      description = "Third Test Chapter description"
 
       spells {
-        ["testSpell"] {
-          ...grimoireMetadata()
-          name = "test spell"
-          description = "test spell description"
+        ["thirdTestSpell"] {
+          ...thirdGrimoireMetadata()
+          name = "Third Test Spell"
+          description = "Third Test Spell description"
 
           requiresConfirmation = false
           keywords {
@@ -140,80 +130,33 @@ grimoireContents {
           dispelInvocation = this.castInvocation
         }
       }
-
-      hexes {
-        ["testHex"] {
-          ...grimoireMetadata()
-          name = "test hex"
-          description = "test hex description"
-
-          requiresConfirmation = true
-          keywords {
-            "bash"
-          }
-
-          castInvocation = module.grimoireContents.chapters["testChapter"].spells["testSpell"].castInvocation
-          verifyInvocation = this.castInvocation
-        }
-      }
-    }
-  }
-
-  rituals {
-    ["testRitual"] {
-      ...grimoireMetadata()
-      name = "A test ritual"
-      description = "A test ritual description"
-
-      requiresConfirmation = true
-      keywords {
-        "apex"
-      }
-
-      steps {
-        new RitualSpellStep {
-          invocationType = "cast"
-          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
-        }
-        new RitualSpellStep {
-          invocationType = "verify"
-          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
-        }
-        new RitualSpellStep {
-          invocationType = "dispel"
-          spell =  module.grimoireContents.chapters["testChapter"].spells["testSpell"]
-        }
-        new RitualHexStep {
-          invocationType = "cast"
-          hex = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
-        }
-        new RitualHexStep {
-          invocationType = "verify"
-          hex = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
-        }
-      }
     }
   }
 
   autoPerformRituals {
-    module.grimoireContents.rituals["testRitual"]
+    module.coreContents.linkedGrimoires["secondLinkedGrimoire"].compositeRituals["secondTestCompositeRitual"]
+  }
+
+  linkedGrimoires {
+    ["secondLinkedGrimoire"] {
+      coreContents = SecondGrimoire.coreContents
+
+      compositeRituals {
+        ["secondTestCompositeRitual"] = SecondGrimoire.coreContents.compositeRituals["secondTestCompositeRitual"]
+      }
+    }
   }
 }
 
-linkedGrimoires {
-  ["testLinkedGrimoire"] {
-    grimoireContents = module.grimoireContents
-    chapters {
-      ["testChapterAlias"] =  module.grimoireContents.chapters["testChapter"]
-    }
-    rituals {
-      ["testRitualAlias"] = module.grimoireContents.rituals["testRitual"]
-    }
-    spells {
-      ["testSpell"] = module.grimoireContents.chapters["testChapter"].spells["testSpell"]
-    }
-    hexes {
-      ["testHex"] = module.grimoireContents.chapters["testChapter"].hexes["testHex"]
-    }
-  }
+sigils {
+  ["secretKey1"] = "single line encrypted value"
+  ["secretKey2"] = """
+    multi line encrypted value
+    """
+  ["secretKey3"] = this["secretKey1"]
+}
+
+enchantments {
+  installAllRequiredToolsOnConnect = false
+  autoVerifySpellsAndHexesAfterCasting = true
 }
