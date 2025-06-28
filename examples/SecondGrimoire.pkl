@@ -1,0 +1,148 @@
+// ==-----------------------------------------------------------== //
+// SPDX-FileCopyrightText: © 2025 Nayan Patil <nayantsg@proton.me>
+//
+// SPDX-License-Identifier: Apache-2.0
+// ==-----------------------------------------------------------== //
+
+@ModuleInfo { minPklVersion = "0.27.0" }
+
+amends "../stdschema/Grimoire.pkl"
+
+import "pkl:Project" as pklProject
+
+import "FirstGrimoire.pkl" as FirstGrimoire
+
+local function secondGrimoireMetadata() = new {
+  grimoireName = "Second Test Grimoire"
+  grimoireVersion = "0.0.0"
+  grimoireDescription = "Second test grimoire"
+  grimoireAuthors = new Listing<pklProject.EmailAddress> {
+    "Nayan (NayanTheSpaceGuy) <nayantsg@proton.me>"
+  }
+  grimoireSourceCode = "https://example.com"
+  grimoireWebsite = "https://example.com"
+  grimoireDocumentation = "https://docs.example.com"
+  grimoireLicense = "Apache-2.0"
+  grimoireIssueTracker = "https://example.com/necronux.stdschema/issues"
+  grimoireKeywords = new Listing<String> {
+    "test"
+  }
+  grimoireAdditionalMetadata = new Mapping {
+    ["exampleTool"] = new Mapping {
+      ["flag1"] = true
+      ["depth"] = 2
+      ["title"] = "text"
+    }
+  }
+}
+
+grimoireMetadata {
+  ...secondGrimoireMetadata()
+}
+
+coreContents {
+  ...secondGrimoireMetadata()
+  chapters {
+    ["secondTestChapter"] {
+      ...secondGrimoireMetadata()
+      name = "Second Test Chapter"
+      spells {
+        ["secondTestSpell"] {
+          ...secondGrimoireMetadata()
+          name = "Second Test Spell"
+
+          castInvocation {
+            executionCommand = "ansible-playbook " + instrumentPath
+            instrumentPath = "ansible/playbooks/playbook1.yml"
+
+            tool {
+              new {
+                name = "ansible"
+                executable = "ansible"
+                provisioningStrategy {
+                  new ToolProvisioningBinding {
+                    toolProvisioner {
+                      name = "yay"
+                      executable = "yay"
+                    }
+                    provisioningCommands {
+                      installCommand = "yay -S ansible"
+                      verifyCommand = "ansible --version"
+                      uninstallCommand = "yay -R ansible"
+                    }
+                  }
+                }
+              }
+            }
+          }
+          verifyInvocation = this.castInvocation
+          dispelInvocation = this.castInvocation
+        }
+      }
+
+      hexes {
+        ["secondTestHex"] {
+          ...secondGrimoireMetadata()
+          name = "Second Test Hex"
+
+          castInvocation = module.coreContents.chapters["secondTestChapter"].spells["secondTestSpell"].castInvocation
+          verifyInvocation = this.castInvocation
+        }
+      }
+    }
+  }
+
+  rituals {
+    ["secondTestRitual"] {
+      ...secondGrimoireMetadata()
+      name = "Second Test Ritual"
+
+      steps {
+        new RitualCastStep {
+          cast = module.coreContents.chapters["secondTestChapter"].hexes["secondTestHex"]
+        }
+      }
+    }
+  }
+
+  compositeRituals {
+    ["secondTestCompositeRitual"] {
+      ...secondGrimoireMetadata()
+      name = "Second Test Composite Ritual"
+
+      steps {
+        new RitualCastStep {
+          cast = module.coreContents.chapters["secondTestChapter"].hexes["secondTestHex"]
+        }
+        new RitualCastStep {
+          cast = module.coreContents.linkedGrimoires["firstLinkedGrimoire"].chapters["firstTestChapter"].spells["firstTestSpell"]
+        }
+      }
+    }
+  }
+
+  autoPerformRituals {
+    module.coreContents.rituals["secondTestRitual"]
+    module.coreContents.compositeRituals["secondTestCompositeRitual"]
+    module.coreContents.linkedGrimoires["firstLinkedGrimoire"].rituals["firstTestRitual"]
+  }
+
+  linkedGrimoires {
+    ["firstLinkedGrimoire"] {
+      coreContents = FirstGrimoire.coreContents
+
+      chapters {
+        ["firstTestChapter"] = FirstGrimoire.coreContents.chapters["firstTestChapter"]
+      }
+      rituals {
+        ["firstTestRitual"] = FirstGrimoire.coreContents.rituals["firstTestRitual"]
+      }
+      spells {
+        ["firstTestSpell"] = FirstGrimoire.coreContents.chapters["firstTestChapter"].spells["firstTestSpell"]
+      }
+      hexes {
+        ["firstTestHex"] = FirstGrimoire.coreContents.chapters["firstTestChapter"].hexes["firstTestHex"]
+      }
+    }
+  }
+}

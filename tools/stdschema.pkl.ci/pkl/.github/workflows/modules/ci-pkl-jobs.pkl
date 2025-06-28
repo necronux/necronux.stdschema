@@ -60,37 +60,3 @@ const function tests() = new gha.Job {
     }
   }
 } |> UtilsCommon.standardJobConfig(null, null)
-
-const function versionCheck() = new gha.Job {
-  name = "Version Check"
-  steps {
-    StepsCommon.checkout(null)
-    new {
-      name = "Check if pkl project version is same in all stdschema files"
-      run = """
-        files=("stdschema/Grimoire.pkl" "stdschema/SigilCase.pkl" "stdschema/Staff.pkl")
-        versions=()
-
-        for file in "${files[@]}"; do
-          version=$(awk -F '"' '/^hidden const stdSchemaPklPkgVersion:/ {print $2; exit}' "$file")
-          if [ -z "$version" ]; then
-            echo "Error: No version found in $file"
-            exit 1
-          fi
-          echo "Extracted version from $file: '$version'"
-          versions+=("$version")
-        done
-
-        first="${versions[0]}"
-        for v in "${versions[@]:1}"; do
-          if [ "$v" != "$first" ]; then
-            echo "Error: Inconsistent stdSchemaPklPkgVersion values detected."
-            echo "Versions found: ${versions[*]}"
-            exit 1
-          fi
-        done
-        """
-      shell = "bash"
-    }
-  }
-} |> UtilsCommon.standardJobConfig(null, null)

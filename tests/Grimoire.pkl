@@ -5,18 +5,18 @@
 // ==-----------------------------------------------------------== //
 
 @ModuleInfo { minPklVersion = "0.27.0" }
-module necronux.stdschema.StdSchema.tests
+module necronux.stdschema.Grimoire.tests
 
 amends "pkl:test"
 
 examples {
-  ["staff"] {
-    import("../examples/TestStaff.pkl").output.text
+  ["firstGrimoire"] {
+    import("../examples/FirstGrimoire.pkl").output.text
   }
-  ["sigilCase"] {
-    import("../examples/TestSigilCase.pkl").output.text
+  ["secondGrimoire"] {
+    import("../examples/SecondGrimoire.pkl").output.text
   }
-  ["grimoire"] {
-    import("../examples/TestGrimoire.pkl").output.text
+  ["thirdGrimoire"] {
+    import("../examples/ThirdGrimoire.pkl").output.text
   }
 }
