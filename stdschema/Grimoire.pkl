@@ -397,7 +397,7 @@ open class LinkedGrimoire {
 }
 
 /// The standard schema pkl package version.
-hidden const stdSchemaPklPkgVersion: String = "0.2.0"
+hidden const stdSchemaPklPkgVersion: String = "0.3.0-dev"
 
 /// The version of standard schema used for this grimoire.
 const stdSchemaVersion: String = stdSchemaPklPkgVersion
