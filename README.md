@@ -15,15 +15,15 @@ The Necronux standard schema.
 [Website][Necronux] | [Getting Started] | [Learn] | [Documentation] | [Contributing]
 </div>
 
-[Necronux]: https://necronux.nayanpatil.space/
-[Getting Started]: https://necronux.nayanpatil.space/learn/get-started
-[Learn]: https://necronux.nayanpatil.space/learn
-[Documentation]: https://necronux.nayanpatil.space/docs
+[Necronux]: https://www.necronux.net/
+[Getting Started]: https://docs.necronux.net/learn/get-started
+[Learn]: https://docs.necronux.net/learn
+[Documentation]: https://docs.necronux.net/
 [Contributing]: https://github.com/necronux/.github/blob/main/CONTRIBUTING.md
 
 ## Getting Help
 
-See https://necronux.nayanpatil.space/community for a list of chat platforms and forums.
+See https://www.necronux.net/community for a list of chat platforms and forums.
 
 ## Contributing
 

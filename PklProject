@@ -16,6 +16,8 @@ package {
   packageZipUrl = "\(sourceCode)/releases/download/\(name)@\(version)/\(name)@\(version).zip"
   description = "The Necronux standard schema."
   authors = doc.authors
+  website = "https://www.necronux.net"
+  documentation = "https://docs.necronux.net/necronux.stdschema"
   sourceCode = doc.sourceCode
   sourceCodeUrlScheme = "\(sourceCode)/blob/\(name)@\(version)%{path}#L%{line}-%{endLine}"
   license = "Apache-2.0"
