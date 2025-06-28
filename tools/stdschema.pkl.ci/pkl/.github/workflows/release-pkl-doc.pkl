@@ -24,7 +24,7 @@ on {
   }
 }
 jobs {
-  ["check-stable-version"] = (JobsPklDoc.checkStableVersion()) {}
+  ["check-stable-version"] = (JobsPklDoc.checkStableVersion("$(grep 'stdSchemaPklPkgVersion' stdschema/Grimoire.pkl | sed -n 's/.*\"\\(.*\\)\".*/\\1/p')")) {}
   ["generate-pkl-doc"] = (JobsPklDoc.generatePklDoc("tmp-docs", "docs", "just make-stdschemapkldoc")) {
     needs {
       "check-stable-version"

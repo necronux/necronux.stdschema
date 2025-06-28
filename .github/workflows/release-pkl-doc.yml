@@ -30,8 +30,8 @@ jobs:
     - name: Extract and check version
       id: check_version
       run: |-
-        VERSION=$(awk -F '"' '/version *=/ {print $2; exit}' doc-package-info.pkl)
-        echo "Extracted necronux.internal.pkl PklProject version: '$VERSION'"
+        VERSION=$(grep 'stdSchemaPklPkgVersion' stdschema/Grimoire.pkl | sed -n 's/.*"\(.*\)".*/\1/p')
+        echo "Extracted PklProject version: '$VERSION'"
 
         if [[ "$VERSION" =~ [+-] ]]; then
           echo "Pre-release or metadata detected in version: $VERSION"
